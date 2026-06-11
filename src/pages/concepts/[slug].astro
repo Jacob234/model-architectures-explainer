@@ -9,6 +9,7 @@ export async function getStaticPaths() {
 }
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base title={`${entry.data.title} — Model Architectures`} description={entry.data.summary}>
   <article class="concept">
@@ -22,9 +23,13 @@ const { Content } = await render(entry);
         <h2>Sources</h2>
         <ul>
           {entry.data.sources.map((s) => (
-            <li><a href={s.url} target="_blank" rel="noopener">{s.label}</a></li>
+            <li>
+              <a href={s.url} target="_blank" rel="noopener">{s.label}</a>
+              <span class={`src-type src-type-${s.type}`}>{s.type}</span>
+            </li>
           ))}
         </ul>
+        <p class="sources-all"><a href={`${base}/sources/`}>browse all sources ›</a></p>
       </section>
     )}
   </article>

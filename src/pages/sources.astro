@@ -1,0 +1,127 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import data from '../data/explainer.json';
+import { candidates } from '../data/candidates.json';
+
+const entries = await getCollection('concepts');
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Map deepDive links must also appear in the concept page's sources, so the
+// directory and the map never disagree about the canonical explainer.
+const bySlug = new Map(entries.map((e) => [e.id, e]));
+for (const f of data.families) {
+  if (!f.deepDive || !f.slug) continue;
+  const sources = bySlug.get(f.slug)?.data.sources ?? [];
+  if (!sources.some((s) => s.url === f.deepDive.url)) {
+    throw new Error(`family ${f.id}: deepDive "${f.deepDive.url}" missing from ${f.slug} sources`);
+  }
+}
+
+// Order within each tier follows the map's reading order (explainer.json),
+// so the directory scans the same way the ladder does.
+const slugOrder = new Map();
+let i = 0;
+for (const coll of [data.primitives, data.modules, data.modifiers, data.families]) {
+  for (const node of coll) {
+    if (node.slug) slugOrder.set(node.slug, i++);
+    for (const v of node.variants ?? []) if (v.slug) slugOrder.set(v.slug, i++);
+  }
+}
+const tiers = [
+  { tier: 'primitive', heading: 'Primitives' },
+  { tier: 'module', heading: 'Modules' },
+  { tier: 'modifier', heading: 'Modifiers' },
+  { tier: 'family', heading: 'Families' },
+].map(({ tier, heading }) => ({
+  heading,
+  entries: entries
+    .filter((e) => e.data.tier === tier)
+    .sort((a, b) =>
+      (slugOrder.get(a.id) ?? Infinity) - (slugOrder.get(b.id) ?? Infinity) ||
+      a.data.title.localeCompare(b.data.title)),
+}));
+
+// The gating verdict: a topic is "well covered elsewhere" when an excellent
+// secondary source exists (explainer or canonical blog) and coverage has depth.
+function isWellCovered(sources) {
+  return sources.some((s) => s.type === 'explainer' || s.type === 'blog') && sources.length >= 3;
+}
+
+const sourceCount =
+  entries.reduce((n, e) => n + (e.data.sources?.length ?? 0), 0) +
+  candidates.reduce((n, c) => n + c.sources.length, 0);
+---
+<Base
+  title="Sources — Model Architectures"
+  description="A curated directory of excellent secondary sources — papers, visual explainers, blog deep-dives, and lectures — for every concept on the map."
+>
+  <div class="directory">
+    <h1>Source directory</h1>
+    <p class="summary">
+      The best existing material on each concept — original papers, visual explainers, canonical
+      blog deep-dives, and lectures. {sourceCount} sources across {entries.length} concepts and
+      {candidates.length} candidate topics. Topics marked <span class="covered-tag">well covered elsewhere</span>
+      already have excellent explanations; this site links to them rather than competing with them.
+    </p>
+    {tiers.map(({ heading, entries: tierEntries }) => (
+      <section class="dir-tier">
+        <h2>{heading}</h2>
+        {tierEntries.map((e) => {
+          const sources = e.data.sources ?? [];
+          return (
+            <article class="dir-topic">
+              <h3>
+                <a href={`${base}/concepts/${e.id}/`}>{e.data.title}</a>
+                {isWellCovered(sources) && <span class="covered-tag">well covered elsewhere</span>}
+              </h3>
+              <p class="dir-blurb">{e.data.summary}</p>
+              {sources.length > 0 ? (
+                <ul class="dir-sources">
+                  {sources.map((s) => (
+                    <li>
+                      <a href={s.url} target="_blank" rel="noopener">{s.label}</a>
+                      <span class={`src-type src-type-${s.type}`}>{s.type}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p class="dir-none">no sources yet</p>
+              )}
+            </article>
+          );
+        })}
+      </section>
+    ))}
+    <section class="dir-tier dir-candidates">
+      <h2>Second ring — candidates</h2>
+      <p class="dir-blurb">
+        Topics under consideration for their own page. If the directory below shows they are
+        already well explained elsewhere, they stay links; if not, they get written.
+      </p>
+      {candidates.map((c) => (
+        <article class="dir-topic candidate">
+          <h3>
+            {c.name}
+            <span class="nopage-tag">no page yet</span>
+            {isWellCovered(c.sources) && <span class="covered-tag">well covered elsewhere</span>}
+          </h3>
+          <p class="dir-blurb">{c.blurb}</p>
+          <p class="dir-note">{c.note}</p>
+          {c.sources.length > 0 ? (
+            <ul class="dir-sources">
+              {c.sources.map((s) => (
+                <li>
+                  <a href={s.url} target="_blank" rel="noopener">{s.label}</a>
+                  <span class={`src-type src-type-${s.type}`}>{s.type}</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p class="dir-none">no sources yet</p>
+          )}
+        </article>
+      ))}
+    </section>
+  </div>
+</Base>

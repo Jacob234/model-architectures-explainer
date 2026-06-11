@@ -121,3 +121,39 @@ body.show-advanced .node[data-tier="advanced"] { display: flex; }
 .locator-tier { text-transform: uppercase; letter-spacing: .12em; color: var(--faint); }
 .locator-next { margin-left: auto; }
 .sources ul { padding-left: 20px; }
+.sources-all { font-size: 13.5px; }
+/* ---- site nav ---- */
+.site-nav { display: flex; gap: 18px; padding: 10px 32px; border-bottom: 1px solid var(--edge);
+  font-family: var(--mono); font-size: 12.5px; }
+.site-nav a { color: var(--muted); text-decoration: none; letter-spacing: .08em;
+  text-transform: uppercase; }
+.site-nav a:hover { color: var(--text); }
+.site-nav a[aria-current="page"] { color: var(--accent); }
+/* ---- source directory ---- */
+.directory { max-width: 78ch; margin: 0 auto; padding: 28px 32px 64px; }
+.directory h1 { margin: 6px 0 10px; font-size: 30px; letter-spacing: -0.02em; }
+.directory .summary { color: var(--muted); font-size: 15.5px; margin: 0 0 26px; }
+.dir-tier h2 { font-family: var(--mono); font-size: 12px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--muted); margin: 30px 0 6px;
+  border-bottom: 1px solid var(--edge); padding-bottom: 7px; }
+.dir-topic { margin: 16px 0 20px; }
+.dir-topic h3 { margin: 0 0 3px; font-size: 17px; display: flex; gap: 10px;
+  align-items: baseline; flex-wrap: wrap; }
+.dir-blurb { margin: 0 0 6px; color: var(--muted); font-size: 13.5px; max-width: 68ch; }
+.dir-note { margin: 0 0 6px; color: var(--faint); font-size: 12.5px; font-style: italic; }
+.dir-sources { margin: 4px 0; padding-left: 20px; font-size: 14px; }
+.dir-sources li { margin: 3px 0; }
+.dir-none { margin: 2px 0; color: var(--faint); font-size: 13px; font-style: italic; }
+.dir-candidates .candidate { border-left: 2px dashed var(--edge); padding-left: 14px; }
+.src-type { font-family: var(--mono); font-size: 10px; letter-spacing: .05em;
+  border: 1px solid var(--edge); border-radius: 4px; padding: 1.5px 6px;
+  margin-left: 7px; white-space: nowrap; color: var(--muted); vertical-align: 1px; }
+.src-type-paper { color: #c8b8e8; border-color: #4a4060; }
+.src-type-explainer { color: #9fd8b4; border-color: #3a5a46; }
+.src-type-blog { color: #f0c98f; border-color: #5e4d33; }
+.src-type-video { color: #e8a0a8; border-color: #5c3a40; }
+.covered-tag, .nopage-tag { font-family: var(--mono); font-size: 10px; letter-spacing: .05em;
+  border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
+.covered-tag { color: #9fd8b4; border: 1px solid #3a5a46;
+  background: color-mix(in srgb, #9fd8b4 8%, transparent); }
+.nopage-tag { color: var(--faint); border: 1px dashed var(--edge); }
