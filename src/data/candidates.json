@@ -64,30 +64,6 @@
       ]
     },
     {
-      "id": "masked-image-modeling",
-      "name": "MAE / masked image modeling",
-      "tier": "family",
-      "blurb": "BERT's fill-in-the-blank idea applied to pixels: hide most of an image's patches and train a ViT to reconstruct them (MAE, BEiT).",
-      "note": "papers are clear but no canonical deep-dive or interactive exists — the page carries most of the explanation itself",
-      "sources": [
-        {
-          "label": "Masked Autoencoders Are Scalable Vision Learners (He et al., 2021)",
-          "url": "https://arxiv.org/abs/2111.06377",
-          "type": "paper"
-        },
-        {
-          "label": "BEiT: BERT Pre-Training of Image Transformers (Bao et al., 2021)",
-          "url": "https://arxiv.org/abs/2106.08254",
-          "type": "paper"
-        },
-        {
-          "label": "Masked Autoencoders Are Scalable Vision Learners — Paper Explained (AI Coffee Break with Letitia, 2021)",
-          "url": "https://www.youtube.com/watch?v=Dp6iICL2dVI",
-          "type": "video"
-        }
-      ]
-    },
-    {
       "id": "vq-vae",
       "name": "VQ-VAE",
       "tier": "family",
@@ -107,30 +83,6 @@
         {
           "label": "Taming Transformers for High-Resolution Image Synthesis (Esser, Rombach and Ommer, 2020)",
           "url": "https://arxiv.org/abs/2012.09841",
-          "type": "paper"
-        }
-      ]
-    },
-    {
-      "id": "rectified-flow",
-      "name": "rectified flow",
-      "tier": "family",
-      "blurb": "Straighten the noise-to-data paths a flow model learns so sampling takes a handful of steps instead of hundreds — the variant of flow matching behind SD3.",
-      "note": "author's own intro plus papers; no third-party explainer — the page (or a section of flow-matching) does the explaining",
-      "sources": [
-        {
-          "label": "Flow Straight and Fast: Learning to Generate and Transfer Data with Rectified Flow (Liu, Gong and Liu, 2022)",
-          "url": "https://arxiv.org/abs/2209.03003",
-          "type": "paper"
-        },
-        {
-          "label": "Rectified Flow: An Introduction (Qiang Liu, UT Austin, 2022)",
-          "url": "https://www.cs.utexas.edu/~lqiang/rectflow/html/intro.html",
-          "type": "blog"
-        },
-        {
-          "label": "Scaling Rectified Flow Transformers for High-Resolution Image Synthesis (Esser et al., Stability AI, 2024)",
-          "url": "https://arxiv.org/abs/2403.03206",
           "type": "paper"
         }
       ]

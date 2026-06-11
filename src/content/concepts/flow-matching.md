@@ -30,7 +30,7 @@ Flow matching is the training objective behind Stable Diffusion 3 and Flux, wher
 
 **Sampling.** At generation time, draw `x0` from noise and integrate the learned velocity field from `t = 0` to `t = 1` using a standard ODE solver (Euler, Heun, etc.). Straight paths mean fewer steps are needed for accurate results.
 
-**Rectified flow.** A flow-matching variant that explicitly pushes transport paths to be as straight as possible. Straight enough paths can be integrated in a single step, underpinning fast one-step samplers. SD3 and Flux use this formulation.
+**[Rectified flow](../rectified-flow/).** A flow-matching variant that explicitly pushes transport paths to be as straight as possible. Straight enough paths can be integrated in a single step, underpinning fast one-step samplers. SD3 and Flux use this formulation.
 
 ## Relation to diffusion
 

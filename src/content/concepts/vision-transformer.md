@@ -31,7 +31,7 @@ The key tradeoff is inductive bias. [Convolutional neural networks](../convoluti
 
 ## The objective is not fixed
 
-ViT is a backbone, not a training recipe. The same architecture is used for supervised classification on ImageNet, masked autoencoding (MAE masks ~75% of patches and trains reconstruction of missing pixels — paralleling BERT's masked pretraining), and contrastive learning ([CLIP](../clip/) trains a ViT image encoder against a text encoder using image–caption pairs). What changes is the training objective and the output head, not the encoder stack.
+ViT is a backbone, not a training recipe. The same architecture is used for supervised classification on ImageNet, masked autoencoding ([MAE](../masked-image-modeling/) masks ~75% of patches and trains reconstruction of missing pixels — paralleling BERT's masked pretraining), and contrastive learning ([CLIP](../clip/) trains a ViT image encoder against a text encoder using image–caption pairs). What changes is the training objective and the output head, not the encoder stack.
 
 ## Variants
 

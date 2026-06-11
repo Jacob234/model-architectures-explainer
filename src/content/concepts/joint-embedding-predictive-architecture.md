@@ -15,7 +15,7 @@ sources:
     type: paper
 ---
 
-Most self-supervised pretraining asks a model to reconstruct masked content at
+Most self-supervised pretraining asks a model to [reconstruct masked content](../masked-image-modeling/) at
 the pixel or token level. JEPA asks a different question: given the visible part
 of an input, can you predict the **representation** of the hidden part? The
 distinction matters. Pixel-level generation requires modeling every low-level
