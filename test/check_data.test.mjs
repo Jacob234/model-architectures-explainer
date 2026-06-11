@@ -141,3 +141,20 @@ test('complete collision group passes', () => {
   ];
   assert.deepEqual(validateDifferentiators(fams), []);
 });
+
+test('whitespace-only differentiator counts as missing', () => {
+  const fams = [
+    { id: 'a', modules: ['x'], objective: 'o', differentiator: '   ' },
+    { id: 'b', modules: ['x'], objective: 'o', differentiator: 'real' },
+  ];
+  assert.match(validateDifferentiators(fams).join('\n'),
+    /family a: shares recipe with b but has no differentiator/);
+});
+
+test('varies family with a stray differentiator is flagged', () => {
+  const fams = [
+    { id: 'cnn', modules: [], objective: 'varies', differentiator: 'stray' },
+  ];
+  assert.match(validateDifferentiators(fams).join('\n'),
+    /family cnn: has a differentiator but no recipe collision/);
+});

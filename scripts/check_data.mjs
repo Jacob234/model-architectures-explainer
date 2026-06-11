@@ -138,7 +138,7 @@ export function validateDifferentiators(families) {
   const groups = new Map();
   for (const f of families) {
     if (f.objective === 'varies') continue;
-    const key = `${[...(f.modules ?? [])].sort().join('+')}|${f.objective}`;
+    const key = `${[...(f.modules ?? [])].sort().join('+')}|${f.objective}`; // spread: sort() is in-place
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key).push(f);
   }
