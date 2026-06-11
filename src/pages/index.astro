@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import LadderMap from '../components/LadderMap.astro';
+import data from '../data/explainer.json';
+
+// Build-time integrity: every node slug must resolve to a concept page.
+const ids = new Set((await getCollection('concepts')).map((e) => e.id));
+const nodes = [...data.primitives, ...data.modules, ...data.modifiers, ...data.families];
+const missing = nodes.filter((n: any) => n.slug && !ids.has(n.slug)).map((n: any) => `${n.id}→${n.slug}`);
+for (const m of data.modules)
+  for (const v of (m as any).variants ?? [])
+    if (v.slug && !ids.has(v.slug)) missing.push(`${m.id} variant→${v.slug}`);
+if (missing.length) throw new Error(`explainer.json slugs without concept pages: ${missing.join(', ')}`);
+---
+<Base
+  title="Model Architectures — an explorable map"
+  description="There are far fewer parts than architectures. A family is just which modules + which objective."
+>
+  <header>
+    <div class="title-row">
+      <h1>Model Architectures</h1>
+      <p class="subtitle">an explorable map of how AI models are put together</p>
+    </div>
+    <p class="thesis">There are far fewer parts than architectures. A family is just <em>which modules + which objective</em>. Click anything.</p>
+    <div class="controls">
+      <label class="toggle"><input type="checkbox" id="advanced-toggle" /> <span>+ Advanced</span></label>
+      <div id="legend" class="legend"><span class="legend-label">objectives — click to filter:</span></div>
+    </div>
+  </header>
+  <LadderMap />
+</Base>

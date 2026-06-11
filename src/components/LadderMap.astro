@@ -1,0 +1,30 @@
+---
+---
+<main>
+  <section class="ladder">
+    <div class="col" id="col-primitives">
+      <h2>Primitives</h2><p class="col-sub">the irreducible operations</p>
+      <div class="col-body"></div>
+      <div id="modifier-strip"><h3>modifiers <span class="hint">(swap-ins, not families)</span></h3><div class="col-body"></div></div>
+    </div>
+    <div class="col" id="col-modules">
+      <h2>Modules</h2><p class="col-sub">stacks of blocks that play a role</p>
+      <div class="col-body"></div>
+    </div>
+    <div class="col" id="col-families">
+      <h2>Families</h2><p class="col-sub">modules + objective = a recipe</p>
+      <div class="col-body"></div>
+    </div>
+  </section>
+  <aside id="detail"></aside>
+</main>
+<template id="detail-intro">
+  <p class="detail-type">how to read this</p>
+  <h2>Pick any node</h2>
+  <p class="blurb">Click a <strong>family</strong> to see its recipe decompose into shared parts. Click a <strong>primitive</strong> to watch every family built on it light up — the whole zoo collapses into a small grammar.</p>
+  <p class="blurb">Badges mark what <em>kind</em> of thing each label is: an <strong>architecture</strong> (a wiring), a <strong>generative-framework</strong> (a training recipe), a <strong>model-class</strong> (a deployable category like “LLM”), a <strong>backbone</strong> (objective-flexible), or a <strong>modifier</strong> (a swap-in like MoE).</p>
+</template>
+<div id="tooltip" hidden></div>
+<script>
+  import '../scripts/ladder.js';
+</script>

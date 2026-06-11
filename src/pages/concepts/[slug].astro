@@ -1,0 +1,31 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Locator from '../../components/Locator.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('concepts');
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+<Base title={`${entry.data.title} — Model Architectures`} description={entry.data.summary}>
+  <article class="concept">
+    <Locator slug={entry.id} tier={entry.data.tier} />
+    <p class="detail-type">{entry.data.tier}{entry.data.kind ? ` · ${entry.data.kind}` : ''}</p>
+    <h1>{entry.data.title}</h1>
+    <p class="summary">{entry.data.summary}</p>
+    <Content />
+    {entry.data.sources && entry.data.sources.length > 0 && (
+      <section class="sources">
+        <h2>Sources</h2>
+        <ul>
+          {entry.data.sources.map((s) => (
+            <li><a href={s.url} target="_blank" rel="noopener">{s.label}</a></li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </article>
+</Base>
