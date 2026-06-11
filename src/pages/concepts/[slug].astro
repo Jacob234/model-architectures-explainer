@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Locator from '../../components/Locator.astro';
+import explainer from '../../data/explainer.json';
 
 export async function getStaticPaths() {
   const entries = await getCollection('concepts');
@@ -10,6 +11,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const family = explainer.families.find((f) => f.slug === entry.id);
 ---
 <Base title={`${entry.data.title} — Model Architectures`} description={entry.data.summary}>
   <article class="concept">
@@ -17,6 +19,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <p class="detail-type">{entry.data.tier}{entry.data.kind ? ` · ${entry.data.kind}` : ''}</p>
     <h1>{entry.data.title}</h1>
     <p class="summary">{entry.data.summary}</p>
+    {family && (
+      <p class="builder-link">
+        <a href={`${base}/builder/?family=${family.id}`}>▸ open this recipe in the builder</a>
+      </p>
+    )}
     <Content />
     {entry.data.sources && entry.data.sources.length > 0 && (
       <section class="sources">
