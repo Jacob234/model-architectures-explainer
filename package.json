@@ -8,6 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "node scripts/check_data.mjs",
+    "check:links": "node scripts/check_links.mjs",
     "test": "node --test 'test/**/*.test.mjs'"
   },
   "dependencies": {

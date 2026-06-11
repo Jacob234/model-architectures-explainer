@@ -70,6 +70,64 @@ export function validateBodyLinks(pages, slugSet) {
   return errors;
 }
 
+// --- source-directory lint ---
+// Frontmatter `sources` are also zod-validated at build time (content.config.ts);
+// this offline pass exists so `npm run check` catches them too, and so
+// candidates.json (which zod never sees) gets the same rules.
+export const SOURCE_TYPES = new Set(['paper', 'explainer', 'blog', 'video']);
+
+// Narrow regex extraction matched to this repo's consistent frontmatter style:
+//   sources:
+//     - label: "..."
+//       url: "..."
+//       type: paper
+export function extractFrontmatterSources(body) {
+  const fm = body.match(/^---\n([\s\S]*?)\n---/);
+  if (!fm) return { sources: [], declared: 0 };
+  const sources = [];
+  const re = /^ {2}- label: "(.*)"\n {4}url: "(.*)"\n {4}type: (\S+)$/gm;
+  for (const m of fm[1].matchAll(re)) {
+    sources.push({ label: m[1], url: m[2], type: m[3] });
+  }
+  // Catch entries the strict triple-line regex missed (wrong order/indent/missing type).
+  const declared = (fm[1].match(/^ {2}- label:/gm) ?? []).length;
+  return { sources, declared };
+}
+
+export function validateSources({ pages, candidates, conceptSlugs }) {
+  const errors = [];
+  const checkList = (sources, ctx) => {
+    const seen = new Set();
+    for (const s of sources) {
+      if (!SOURCE_TYPES.has(s.type)) errors.push(`${ctx}: source "${s.label}" has unknown type "${s.type}"`);
+      let url;
+      try { url = new URL(s.url); } catch { errors.push(`${ctx}: source "${s.label}" has invalid url "${s.url}"`); }
+      if (url && url.protocol !== 'https:') errors.push(`${ctx}: source "${s.label}" must use https ("${s.url}")`);
+      if (seen.has(s.url)) errors.push(`${ctx}: duplicate source url "${s.url}"`);
+      seen.add(s.url);
+    }
+  };
+  for (const [file, body] of Object.entries(pages)) {
+    const { sources, declared } = extractFrontmatterSources(body);
+    if (declared !== sources.length) {
+      errors.push(`${file}: ${declared} source entr${declared === 1 ? 'y' : 'ies'} declared but only ` +
+        `${sources.length} parse as label/url/type — check formatting`);
+    }
+    checkList(sources, file);
+  }
+  for (const c of candidates) {
+    if (conceptSlugs.has(c.id)) {
+      errors.push(`candidate "${c.id}" collides with an existing concept slug — move its sources to frontmatter and delete the entry`);
+    }
+    if (!['primitive', 'module', 'modifier', 'family'].includes(c.tier)) {
+      errors.push(`candidate "${c.id}": unknown tier "${c.tier}"`);
+    }
+    if (!Array.isArray(c.sources)) errors.push(`candidate "${c.id}": sources must be an array`);
+    else checkList(c.sources, `candidate "${c.id}"`);
+  }
+  return errors;
+}
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
   const data = JSON.parse(readFileSync(path.join(root, 'src/data/explainer.json'), 'utf8'));
@@ -81,8 +139,13 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     .map((f) => [f, readFileSync(path.join(conceptsDir, f), 'utf8')]));
   const slugSet = new Set(Object.keys(pages).map((f) => f.slice(0, -3)));
   errors.push(...validateBodyLinks(pages, slugSet));
+  const { candidates } = JSON.parse(readFileSync(path.join(root, 'src/data/candidates.json'), 'utf8'));
+  errors.push(...validateSources({ pages, candidates, conceptSlugs: slugSet }));
   if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
+  const sourceCount = Object.values(pages).reduce((n, b) => n + extractFrontmatterSources(b).sources.length, 0) +
+    candidates.reduce((n, c) => n + c.sources.length, 0);
   console.log(`OK primitives=${data.primitives.length} modules=${data.modules.length} ` +
     `modifiers=${data.modifiers.length} objectives=${data.objectives.length} ` +
-    `families=${data.families.length} concepts=${files.filter((f) => f.endsWith('.md')).length}`);
+    `families=${data.families.length} concepts=${files.filter((f) => f.endsWith('.md')).length} ` +
+    `candidates=${candidates.length} sources=${sourceCount}`);
 }

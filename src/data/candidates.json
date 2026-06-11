@@ -1,0 +1,187 @@
+{
+  "candidates": [
+    {
+      "id": "tokenization",
+      "name": "tokenization",
+      "tier": "primitive",
+      "blurb": "How raw text becomes the integer IDs models actually see — BPE, WordPiece, SentencePiece, and why tokenizer quirks explain so many LLM failures.",
+      "note": "superbly covered elsewhere (Karpathy's tokenizer build, HF course chapter, Tiktokenizer playground) — link, don't write",
+      "sources": [
+        {
+          "label": "Neural Machine Translation of Rare Words with Subword Units (Sennrich et al., 2015)",
+          "url": "https://arxiv.org/abs/1508.07909",
+          "type": "paper"
+        },
+        {
+          "label": "Let's Build the GPT Tokenizer (Andrej Karpathy, 2024)",
+          "url": "https://www.youtube.com/watch?v=zduSFxRajkE",
+          "type": "video"
+        },
+        {
+          "label": "Tokenizers chapter, Hugging Face LLM Course (Hugging Face, 2022)",
+          "url": "https://huggingface.co/learn/llm-course/chapter6/1",
+          "type": "blog"
+        },
+        {
+          "label": "Tiktokenizer (dqbd, 2023)",
+          "url": "https://tiktokenizer.vercel.app/",
+          "type": "explainer"
+        }
+      ]
+    },
+    {
+      "id": "transformer-block",
+      "name": "transformer block",
+      "tier": "module",
+      "blurb": "The repeating unit of every transformer: attention + feed-forward, wrapped in residual connections and normalization. The piece the existing primitives compose into.",
+      "note": "the best-covered topic anywhere (two interactive visualizations, Illustrated + Annotated Transformer) — link, don't write",
+      "sources": [
+        {
+          "label": "Attention Is All You Need (Vaswani et al., 2017)",
+          "url": "https://arxiv.org/abs/1706.03762",
+          "type": "paper"
+        },
+        {
+          "label": "The Illustrated Transformer (Jay Alammar, 2018)",
+          "url": "https://jalammar.github.io/illustrated-transformer/",
+          "type": "blog"
+        },
+        {
+          "label": "The Annotated Transformer (Harvard NLP, 2022)",
+          "url": "https://nlp.seas.harvard.edu/annotated-transformer/",
+          "type": "blog"
+        },
+        {
+          "label": "Transformer Explainer (Polo Club, Georgia Tech, 2024)",
+          "url": "https://poloclub.github.io/transformer-explainer/",
+          "type": "explainer"
+        },
+        {
+          "label": "LLM Visualization (Brendan Bycroft, 2023)",
+          "url": "https://bbycroft.net/llm",
+          "type": "explainer"
+        }
+      ]
+    },
+    {
+      "id": "masked-image-modeling",
+      "name": "MAE / masked image modeling",
+      "tier": "family",
+      "blurb": "BERT's fill-in-the-blank idea applied to pixels: hide most of an image's patches and train a ViT to reconstruct them (MAE, BEiT).",
+      "note": "papers are clear but no canonical written deep-dive or interactive explainer exists — good candidate for a page",
+      "sources": [
+        {
+          "label": "Masked Autoencoders Are Scalable Vision Learners (He et al., 2021)",
+          "url": "https://arxiv.org/abs/2111.06377",
+          "type": "paper"
+        },
+        {
+          "label": "BEiT: BERT Pre-Training of Image Transformers (Bao et al., 2021)",
+          "url": "https://arxiv.org/abs/2106.08254",
+          "type": "paper"
+        },
+        {
+          "label": "Masked Autoencoders Are Scalable Vision Learners — Paper Explained (AI Coffee Break with Letitia, 2021)",
+          "url": "https://www.youtube.com/watch?v=Dp6iICL2dVI",
+          "type": "video"
+        }
+      ]
+    },
+    {
+      "id": "vq-vae",
+      "name": "VQ-VAE",
+      "tier": "family",
+      "blurb": "An autoencoder with a discrete codebook bottleneck — images become grids of tokens, which is what lets transformers generate them (VQ-VAE, VQGAN, DALL-E 1).",
+      "note": "one excellent intuition-first blog plus the papers; no interactive explainer — borderline, a page could add value",
+      "sources": [
+        {
+          "label": "Neural Discrete Representation Learning (van den Oord et al., 2017)",
+          "url": "https://arxiv.org/abs/1711.00937",
+          "type": "paper"
+        },
+        {
+          "label": "Understanding VQ-VAE — DALL-E Explained Pt. 1 (Charlie Snell, ML@Berkeley, 2021)",
+          "url": "https://mlberkeley.substack.com/p/vq-vae",
+          "type": "blog"
+        },
+        {
+          "label": "Taming Transformers for High-Resolution Image Synthesis (Esser, Rombach and Ommer, 2020)",
+          "url": "https://arxiv.org/abs/2012.09841",
+          "type": "paper"
+        }
+      ]
+    },
+    {
+      "id": "rectified-flow",
+      "name": "rectified flow",
+      "tier": "family",
+      "blurb": "Straighten the noise-to-data paths a flow model learns so sampling takes a handful of steps instead of hundreds — the variant of flow matching behind SD3.",
+      "note": "author's own intro plus papers; no third-party explainer — good candidate for a page (or fold into flow-matching)",
+      "sources": [
+        {
+          "label": "Flow Straight and Fast: Learning to Generate and Transfer Data with Rectified Flow (Liu, Gong and Liu, 2022)",
+          "url": "https://arxiv.org/abs/2209.03003",
+          "type": "paper"
+        },
+        {
+          "label": "Rectified Flow: An Introduction (Qiang Liu, UT Austin, 2022)",
+          "url": "https://www.cs.utexas.edu/~lqiang/rectflow/html/intro.html",
+          "type": "blog"
+        },
+        {
+          "label": "Scaling Rectified Flow Transformers for High-Resolution Image Synthesis (Esser et al., Stability AI, 2024)",
+          "url": "https://arxiv.org/abs/2403.03206",
+          "type": "paper"
+        }
+      ]
+    },
+    {
+      "id": "perceiver",
+      "name": "Perceiver",
+      "tier": "family",
+      "blurb": "Cross-attend a huge input into a small fixed-size latent array, then run the transformer there — one architecture for images, audio, point clouds, anything.",
+      "note": "papers plus a thorough HF walkthrough; no visual explainer — borderline, low urgency given the architecture's niche status",
+      "sources": [
+        {
+          "label": "Perceiver: General Perception with Iterative Attention (Jaegle et al., 2021)",
+          "url": "https://arxiv.org/abs/2103.03206",
+          "type": "paper"
+        },
+        {
+          "label": "Perceiver IO: A General Architecture for Structured Inputs and Outputs (Jaegle et al., 2021)",
+          "url": "https://arxiv.org/abs/2107.14795",
+          "type": "paper"
+        },
+        {
+          "label": "Perceiver IO: a scalable, fully-attentional model that works on any modality (Hugging Face, 2021)",
+          "url": "https://huggingface.co/blog/perceiver",
+          "type": "blog"
+        }
+      ]
+    },
+    {
+      "id": "retrieval-augmented",
+      "name": "retrieval-augmented architectures",
+      "tier": "family",
+      "blurb": "Bolt a search step onto a generator: fetch relevant documents at inference time and condition on them (RAG, RETRO) instead of memorizing everything in weights.",
+      "note": "well covered architecturally (RAG + RETRO papers, Alammar's illustrated RETRO) — link, don't write",
+      "sources": [
+        {
+          "label": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., 2020)",
+          "url": "https://arxiv.org/abs/2005.11401",
+          "type": "paper"
+        },
+        {
+          "label": "Improving Language Models by Retrieving from Trillions of Tokens (Borgeaud et al., 2021)",
+          "url": "https://arxiv.org/abs/2112.04426",
+          "type": "paper"
+        },
+        {
+          "label": "The Illustrated Retrieval Transformer (Jay Alammar, 2022)",
+          "url": "https://jalammar.github.io/illustrated-retrieval-transformer/",
+          "type": "blog"
+        }
+      ]
+    }
+  ]
+}
