@@ -47,7 +47,7 @@ on the latent space to keep it organized.
 where ε is external noise. Now μ and σ are on a differentiable path and
 gradients flow back through the encoder.
 
-**VQ-VAE** (van den Oord et al., 2017) replaces the Gaussian latent with a
+**[VQ-VAE](../vq-vae/)** (van den Oord et al., 2017) replaces the Gaussian latent with a
 discrete codebook: the encoder output snaps to its nearest codebook entry,
 producing discrete tokens that autoregressive models can generate.
 This is the basis of token-based image and audio generation.

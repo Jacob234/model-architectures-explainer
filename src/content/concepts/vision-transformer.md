@@ -19,7 +19,7 @@ The Vision Transformer (ViT), introduced by Dosovitskiy et al. in 2020, made a p
 
 ## How it works
 
-ViT's core contribution is a tokenization recipe that turns a 2D image into a sequence the transformer already knows how to process:
+ViT's core contribution is a [tokenization](../tokenization/) recipe that turns a 2D image into a sequence the transformer already knows how to process:
 
 1. **Patchify.** Divide the image (e.g., 224×224 pixels) into a grid of non-overlapping 16×16 patches, yielding 196 patches for that example — the "16×16 words" of the paper's title.
 2. **Linear embedding.** Flatten each patch and project it through a learned linear layer to produce a fixed-dimensional token vector.

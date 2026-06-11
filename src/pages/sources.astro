@@ -62,9 +62,9 @@ const sourceCount =
     <p class="summary">
       The best existing material on each concept — original papers, visual explainers, canonical
       blog deep-dives, and lectures — collected alongside the concept pages. {sourceCount} sources
-      across {entries.length} concepts and {candidates.length} candidate topics. Topics marked
-      <span class="covered-tag">interactive exists</span> already have an excellent interactive
-      explainer; this site links to it rather than building its own.
+      across {entries.length} concepts{candidates.length > 0 && ` and ${candidates.length} candidate topics`}.
+      Topics marked <span class="covered-tag">interactive exists</span> already have an excellent
+      interactive explainer; this site links to it rather than building its own.
     </p>
     {tiers.map(({ heading, entries: tierEntries }) => (
       <section class="dir-tier">
@@ -95,7 +95,7 @@ const sourceCount =
         })}
       </section>
     ))}
-    <section class="dir-tier dir-candidates">
+    {candidates.length > 0 && <section class="dir-tier dir-candidates">
       <h2>Second ring — candidates</h2>
       <p class="dir-blurb">
         Topics queued for their own page. Their sources are collected ahead of time, so each
@@ -125,6 +125,6 @@ const sourceCount =
           )}
         </article>
       ))}
-    </section>
+    </section>}
   </div>
 </Base>

@@ -24,7 +24,7 @@ The simplest embedding layer is a lookup table: a matrix of shape (vocabulary si
 
 **Multimodal embeddings.** The same idea extends beyond text. [CLIP](../clip/) trains a text encoder and an image encoder so that a photo of a dog and the phrase "a dog" end up at nearly the same point in shared space. This makes it possible to search images with text queries and vice versa.
 
-**Similarity.** Once items are embedded, distance becomes a proxy for relatedness. Cosine similarity (the angle between vectors) is the standard metric. Semantic search works by embedding a query and retrieving stored vectors that land nearby.
+**Similarity.** Once items are embedded, distance becomes a proxy for relatedness. Cosine similarity (the angle between vectors) is the standard metric. [Semantic search](../retrieval-augmented/) works by embedding a query and retrieving stored vectors that land nearby.
 
 ## Where you'll see it
 

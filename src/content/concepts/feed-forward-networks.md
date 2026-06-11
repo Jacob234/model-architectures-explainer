@@ -17,7 +17,7 @@ sources:
     type: video
 ---
 
-Every transformer block contains two sub-layers: an attention layer that mixes information *across* positions, and a feed-forward network (FFN) that processes each position *independently*. The FFN is easy to overlook beside attention, but it holds roughly two-thirds of a transformer's parameters and is increasingly understood as the primary place where models store factual knowledge.
+Every [transformer block](../transformer-block/) contains two sub-layers: an attention layer that mixes information *across* positions, and a feed-forward network (FFN) that processes each position *independently*. The FFN is easy to overlook beside attention, but it holds roughly two-thirds of a transformer's parameters and is increasingly understood as the primary place where models store factual knowledge.
 
 ## How it works
 

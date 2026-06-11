@@ -49,7 +49,7 @@ MAE is an asymmetric [autoencoder](../autoencoders/) built from
    segmentation, or used as the vision encoder in larger systems.
 
 **BEiT**, the other founding formulation, masks patches the same way but predicts
-discrete visual token ids (from a pretrained image tokenizer) instead of raw
+discrete visual token ids (from a pretrained [image tokenizer](../vq-vae/)) instead of raw
 pixels — literally BERT's classification-over-vocabulary objective, where MAE
 swaps in pixel regression and drops the tokenizer dependency.
 
