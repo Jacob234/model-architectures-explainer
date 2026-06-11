@@ -31,6 +31,7 @@ test('alsoFits: varies families match any objective on module equality', () => {
 });
 
 test('zero-module backbones surface only on empty module selection', () => {
+  // null = no objective selected; never equals a real objective, so only 'varies' tiers can hit
   const empty = matchRecipe({ modules: [], objective: null }, FAMILIES);
   assert.deepEqual(ids(empty.alsoFits), ['cnn']);
   const nonEmpty = matchRecipe({ modules: ['encoder'], objective: null }, FAMILIES);
@@ -40,4 +41,10 @@ test('zero-module backbones surface only on empty module selection', () => {
 test('energy-based: empty modules + concrete objective is an exact match', () => {
   const r = matchRecipe({ modules: [], objective: 'energy' }, FAMILIES);
   assert.deepEqual(ids(r.exact), ['energy']);
+});
+
+test('same modules but wrong concrete objective matches nothing', () => {
+  const r = matchRecipe({ modules: ['encoder', 'decoder'], objective: 'masked' }, FAMILIES);
+  assert.deepEqual(ids(r.exact), []); // vae needs reconstruction
+  assert.deepEqual(ids(r.alsoFits), []);
 });
