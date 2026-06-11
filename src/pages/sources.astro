@@ -42,10 +42,11 @@ const tiers = [
       a.data.title.localeCompare(b.data.title)),
 }));
 
-// The gating verdict: a topic is "well covered elsewhere" when an excellent
-// secondary source exists (explainer or canonical blog) and coverage has depth.
-function isWellCovered(sources) {
-  return sources.some((s) => s.type === 'explainer' || s.type === 'blog') && sources.length >= 3;
+// Sources sit alongside the concept pages; what they replace is homegrown
+// interactive visualizations. This flags topics where an excellent external
+// interactive already exists, so none needs to be built here.
+function hasInteractive(sources) {
+  return sources.some((s) => s.type === 'explainer');
 }
 
 const sourceCount =
@@ -60,9 +61,10 @@ const sourceCount =
     <h1>Source directory</h1>
     <p class="summary">
       The best existing material on each concept — original papers, visual explainers, canonical
-      blog deep-dives, and lectures. {sourceCount} sources across {entries.length} concepts and
-      {candidates.length} candidate topics. Topics marked <span class="covered-tag">well covered elsewhere</span>
-      already have excellent explanations; this site links to them rather than competing with them.
+      blog deep-dives, and lectures — collected alongside the concept pages. {sourceCount} sources
+      across {entries.length} concepts and {candidates.length} candidate topics. Topics marked
+      <span class="covered-tag">interactive exists</span> already have an excellent interactive
+      explainer; this site links to it rather than building its own.
     </p>
     {tiers.map(({ heading, entries: tierEntries }) => (
       <section class="dir-tier">
@@ -73,7 +75,7 @@ const sourceCount =
             <article class="dir-topic">
               <h3>
                 <a href={`${base}/concepts/${e.id}/`}>{e.data.title}</a>
-                {isWellCovered(sources) && <span class="covered-tag">well covered elsewhere</span>}
+                {hasInteractive(sources) && <span class="covered-tag">interactive exists</span>}
               </h3>
               <p class="dir-blurb">{e.data.summary}</p>
               {sources.length > 0 ? (
@@ -96,15 +98,16 @@ const sourceCount =
     <section class="dir-tier dir-candidates">
       <h2>Second ring — candidates</h2>
       <p class="dir-blurb">
-        Topics under consideration for their own page. If the directory below shows they are
-        already well explained elsewhere, they stay links; if not, they get written.
+        Topics queued for their own page. Their sources are collected ahead of time, so each
+        page can be written link-first — and where an interactive explainer already exists,
+        the page points there instead of this site building one.
       </p>
       {candidates.map((c) => (
         <article class="dir-topic candidate">
           <h3>
             {c.name}
             <span class="nopage-tag">no page yet</span>
-            {isWellCovered(c.sources) && <span class="covered-tag">well covered elsewhere</span>}
+            {hasInteractive(c.sources) && <span class="covered-tag">interactive exists</span>}
           </h3>
           <p class="dir-blurb">{c.blurb}</p>
           <p class="dir-note">{c.note}</p>

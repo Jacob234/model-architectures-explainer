@@ -5,7 +5,7 @@
       "name": "tokenization",
       "tier": "primitive",
       "blurb": "How raw text becomes the integer IDs models actually see — BPE, WordPiece, SentencePiece, and why tokenizer quirks explain so many LLM failures.",
-      "note": "superbly covered elsewhere (Karpathy's tokenizer build, HF course chapter, Tiktokenizer playground) — link, don't write",
+      "note": "rich material for a link-first page (Karpathy's build, HF course chapter, Tiktokenizer playground); no homegrown interactive needed",
       "sources": [
         {
           "label": "Neural Machine Translation of Rare Words with Subword Units (Sennrich et al., 2015)",
@@ -34,7 +34,7 @@
       "name": "transformer block",
       "tier": "module",
       "blurb": "The repeating unit of every transformer: attention + feed-forward, wrapped in residual connections and normalization. The piece the existing primitives compose into.",
-      "note": "the best-covered topic anywhere (two interactive visualizations, Illustrated + Annotated Transformer) — link, don't write",
+      "note": "two excellent external interactives (Transformer Explainer, LLM Visualization) — the page links these instead of this site building one",
       "sources": [
         {
           "label": "Attention Is All You Need (Vaswani et al., 2017)",
@@ -68,7 +68,7 @@
       "name": "MAE / masked image modeling",
       "tier": "family",
       "blurb": "BERT's fill-in-the-blank idea applied to pixels: hide most of an image's patches and train a ViT to reconstruct them (MAE, BEiT).",
-      "note": "papers are clear but no canonical written deep-dive or interactive explainer exists — good candidate for a page",
+      "note": "papers are clear but no canonical deep-dive or interactive exists — the page carries most of the explanation itself",
       "sources": [
         {
           "label": "Masked Autoencoders Are Scalable Vision Learners (He et al., 2021)",
@@ -92,7 +92,7 @@
       "name": "VQ-VAE",
       "tier": "family",
       "blurb": "An autoencoder with a discrete codebook bottleneck — images become grids of tokens, which is what lets transformers generate them (VQ-VAE, VQGAN, DALL-E 1).",
-      "note": "one excellent intuition-first blog plus the papers; no interactive explainer — borderline, a page could add value",
+      "note": "one excellent intuition-first blog plus the papers; no interactive exists — the page leans on Snell's deep-dive",
       "sources": [
         {
           "label": "Neural Discrete Representation Learning (van den Oord et al., 2017)",
@@ -116,7 +116,7 @@
       "name": "rectified flow",
       "tier": "family",
       "blurb": "Straighten the noise-to-data paths a flow model learns so sampling takes a handful of steps instead of hundreds — the variant of flow matching behind SD3.",
-      "note": "author's own intro plus papers; no third-party explainer — good candidate for a page (or fold into flow-matching)",
+      "note": "author's own intro plus papers; no third-party explainer — the page (or a section of flow-matching) does the explaining",
       "sources": [
         {
           "label": "Flow Straight and Fast: Learning to Generate and Transfer Data with Rectified Flow (Liu, Gong and Liu, 2022)",
@@ -140,7 +140,7 @@
       "name": "Perceiver",
       "tier": "family",
       "blurb": "Cross-attend a huge input into a small fixed-size latent array, then run the transformer there — one architecture for images, audio, point clouds, anything.",
-      "note": "papers plus a thorough HF walkthrough; no visual explainer — borderline, low urgency given the architecture's niche status",
+      "note": "papers plus a thorough HF walkthrough; no visual explainer — low urgency given the architecture's niche status",
       "sources": [
         {
           "label": "Perceiver: General Perception with Iterative Attention (Jaegle et al., 2021)",
@@ -164,7 +164,7 @@
       "name": "retrieval-augmented architectures",
       "tier": "family",
       "blurb": "Bolt a search step onto a generator: fetch relevant documents at inference time and condition on them (RAG, RETRO) instead of memorizing everything in weights.",
-      "note": "well covered architecturally (RAG + RETRO papers, Alammar's illustrated RETRO) — link, don't write",
+      "note": "strong companions ready for a future page (RAG + RETRO papers, Alammar's illustrated RETRO)",
       "sources": [
         {
           "label": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., 2020)",
