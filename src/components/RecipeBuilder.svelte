@@ -46,12 +46,13 @@
   }
 
   const moduleName = (id) => moduleDefs.find((d) => d.id === id)?.name ?? id;
+  const objectiveName = (id) => objectiveDefs.find((d) => d.id === id)?.name ?? id;
   const famHref = (f) => (f.slug ? `${base}/concepts/${f.slug}/` : null);
   function hintText(f) {
     const h = editHint({ modules: mods, objective }, f);
     if (h.kind === 'add') return `add ${moduleName(h.what)}`;
     if (h.kind === 'drop') return `drop ${moduleName(h.what)}`;
-    return `swap objective to ${h.what}`;
+    return `swap objective to ${objectiveName(h.what)}`;
   }
 </script>
 
@@ -62,17 +63,17 @@
 {/if}
 
 <section class="picker" aria-label="Recipe inputs">
-  <h2>modules</h2>
-  <div class="chips">
+  <h2 id="modules-label">modules</h2>
+  <div class="chips" role="group" aria-labelledby="modules-label">
     {#each moduleDefs as m (m.id)}
-      <button class="chip" class:on={mods.includes(m.id)} aria-pressed={mods.includes(m.id)}
+      <button type="button" class="chip" class:on={mods.includes(m.id)} aria-pressed={mods.includes(m.id)}
         title={m.blurb} onclick={() => toggleModule(m.id)}>{m.name}</button>
     {/each}
   </div>
-  <h2>objective</h2>
-  <div class="chips">
+  <h2 id="objective-label">objective</h2>
+  <div class="chips" role="group" aria-labelledby="objective-label">
     {#each objectiveDefs as o (o.id)}
-      <button class="chip obj" class:on={objective === o.id} aria-pressed={objective === o.id}
+      <button type="button" class="chip obj" class:on={objective === o.id} aria-pressed={objective === o.id}
         style={`--obj: ${o.color}`} title={o.blurb} onclick={() => setObjective(o.id)}>{o.name}</button>
     {/each}
   </div>
