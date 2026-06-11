@@ -2,6 +2,16 @@
 title: predictor
 tier: module
 summary: A lightweight module that predicts the representation of hidden content from visible context — the defining piece of JEPA and latent world models.
+sources:
+  - label: "A Path Towards Autonomous Machine Intelligence (Yann LeCun, 2022)"
+    url: "https://openreview.net/forum?id=BZ5a1r-kVsf"
+    type: paper
+  - label: "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture (Assran et al., 2023)"
+    url: "https://arxiv.org/abs/2301.08243"
+    type: paper
+  - label: "V-JEPA: The next step toward advanced machine intelligence (Meta AI, 2024)"
+    url: "https://ai.meta.com/blog/v-jepa-yann-lecun-ai-model-video-joint-embedding-predictive-architecture/"
+    type: blog
 ---
 
 A predictor is a module that takes a context representation and forecasts what the representation of some hidden or future part *should be* — operating entirely in the model's internal [embedding](../embeddings/) space rather than generating pixels or tokens. It is the defining component of [joint embedding predictive architectures](../joint-embedding-predictive-architecture/) (JEPA) and latent [world models](../world-models/), and marks a deliberate departure from generative training: instead of reconstructing raw input, the model learns to predict abstract summaries of what it hasn't seen.

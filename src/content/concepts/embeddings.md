@@ -2,6 +2,16 @@
 title: embeddings
 tier: primitive
 summary: Dense vectors that represent discrete tokens (words, image patches, users) as points in a continuous space, where geometric closeness reflects semantic similarity.
+sources:
+  - label: "Efficient Estimation of Word Representations in Vector Space (Mikolov et al., 2013)"
+    url: "https://arxiv.org/abs/1301.3781"
+    type: paper
+  - label: "The Illustrated Word2vec (Jay Alammar, 2019)"
+    url: "https://jalammar.github.io/illustrated-word2vec/"
+    type: blog
+  - label: "Learning Word Embedding (Lilian Weng, 2017)"
+    url: "https://lilianweng.github.io/posts/2017-10-15-word-embedding/"
+    type: blog
 ---
 
 Neural networks can only compute with numbers, but the world is full of discrete things — words, tokens, image patches, user IDs. Embeddings are the bridge: a learned mapping from each discrete item to a point in a high-dimensional vector space. The central insight is that similar things end up close together, so the geometry of the space reflects meaning. "Dog" lands near "cat" and far from "democracy."

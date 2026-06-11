@@ -5,6 +5,16 @@ summary: Adds a layer's input back to its output — y = x + F(x) — giving gra
 sources:
   - label: "Attention Is All You Need (Vaswani et al., 2017)"
     url: "https://arxiv.org/abs/1706.03762"
+    type: paper
+  - label: "Deep Residual Learning for Image Recognition (He et al., 2015)"
+    url: "https://arxiv.org/abs/1512.03385"
+    type: paper
+  - label: "A Mathematical Framework for Transformer Circuits (Elhage et al., Anthropic, 2021)"
+    url: "https://transformer-circuits.pub/2021/framework/index.html"
+    type: paper
+  - label: "Residual Networks (ResNet), Dive into Deep Learning (Zhang et al., 2023)"
+    url: "https://d2l.ai/chapter_convolutional-modern/resnet.html"
+    type: blog
 ---
 
 Before residual connections, networks deeper than about 20 layers were effectively untrainable — adding more layers made performance *worse*, not better. The problem was vanishing gradients: the chain of multiplications through backpropagation shrinks signals exponentially with depth until early layers receive no useful gradient at all. Residual connections, introduced by He et al. (2015) in the ResNet family for computer vision, solved this problem with a single addition: instead of `y = F(x)`, use `y = x + F(x)`.

@@ -3,6 +3,16 @@ title: vision-language-action models (VLAs)
 tier: family
 kind: model-class
 summary: A VLM extended for robotics — the model sees the scene, reads the instruction, and emits motor actions as tokens, inheriting web-scale knowledge without changing the architecture (RT-2, π0).
+sources:
+  - label: "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control (Brohan et al., 2023)"
+    url: "https://arxiv.org/abs/2307.15818"
+    type: paper
+  - label: "RT-2: New model translates vision and language into action (Google DeepMind, 2023)"
+    url: "https://deepmind.google/discover/blog/rt-2-new-model-translates-vision-and-language-into-action/"
+    type: blog
+  - label: "π0: Our First Generalist Policy (Physical Intelligence, 2024)"
+    url: "https://www.pi.website/blog/pi0"
+    type: blog
 ---
 
 A vision-language-action model (VLA) is a [vision-language model](../vision-language-models/) with one additional output modality: **robot actions**. The core bet, introduced by RT-2 (DeepMind, 2023), is that a robot policy should inherit the web-scale knowledge of a VLM rather than learn the world from scratch on scarce robot data. By discretizing motor commands — end-effector deltas, gripper state, a terminate flag — and serializing them as tokens, you can fine-tune an internet-pretrained VLM on robot demonstrations without changing its architecture. The robot policy is literally the same model that does visual question answering.

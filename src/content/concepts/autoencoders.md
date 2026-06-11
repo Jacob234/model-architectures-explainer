@@ -3,6 +3,19 @@ title: autoencoders
 tier: family
 kind: architecture
 summary: Encoder squeezes the input through a bottleneck; decoder rebuilds it. The bottleneck is forced to learn what matters — and is the parent of VAEs and sparse autoencoders.
+sources:
+  - label: "Reducing the Dimensionality of Data with Neural Networks (Hinton and Salakhutdinov, 2006)"
+    url: "https://www.cs.toronto.edu/~hinton/absps/science.pdf"
+    type: paper
+  - label: "From Autoencoder to Beta-VAE (Lilian Weng, 2018)"
+    url: "https://lilianweng.github.io/posts/2018-08-12-vae/"
+    type: blog
+  - label: "Anomagram: Anomaly Detection with Autoencoders in the Browser (Victor Dibia, 2019)"
+    url: "https://anomagram.fastforwardlabs.com/"
+    type: explainer
+  - label: "Building Autoencoders in Keras (Francois Chollet, 2016)"
+    url: "https://blog.keras.io/building-autoencoders-in-keras.html"
+    type: blog
 ---
 
 An autoencoder is a neural network trained to reconstruct its own input after

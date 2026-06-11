@@ -3,6 +3,19 @@ title: state space models (SSM/Mamba)
 tier: family
 kind: backbone
 summary: Replaces attention with a selective state-space scan — recurrent memory you can train in parallel, sub-quadratic in sequence length. Mostly used autoregressively (Mamba, S4). The objective is not fixed.
+sources:
+  - label: "Mamba: Linear-Time Sequence Modeling with Selective State Spaces (Gu & Dao, 2023)"
+    url: "https://arxiv.org/abs/2312.00752"
+    type: paper
+  - label: "Efficiently Modeling Long Sequences with Structured State Spaces (Gu, Goel & Re, 2021)"
+    url: "https://arxiv.org/abs/2111.00396"
+    type: paper
+  - label: "The Annotated S4 (Rush & Karamcheti, 2022)"
+    url: "https://srush.github.io/annotated-s4/"
+    type: explainer
+  - label: "A Visual Guide to Mamba and State Space Models (Maarten Grootendorst, 2024)"
+    url: "https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-mamba-and-state"
+    type: explainer
 ---
 
 State space models bring a tool from classical control theory — the linear

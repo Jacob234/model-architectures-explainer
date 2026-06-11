@@ -5,8 +5,16 @@ summary: Swaps the dense feed-forward block for many routed "expert" MLPs — on
 sources:
   - label: "Outrageously Large Neural Networks: The Sparsely-Gated MoE Layer (Shazeer et al., 2017)"
     url: "https://arxiv.org/abs/1701.06538"
+    type: paper
   - label: "Switch Transformers: Scaling to Trillion Parameter Models (Fedus et al., 2021)"
     url: "https://arxiv.org/abs/2101.03961"
+    type: paper
+  - label: "Mixture of Experts Explained (Hugging Face, 2023)"
+    url: "https://huggingface.co/blog/moe"
+    type: blog
+  - label: "Mixture-of-Experts (MoE) LLMs (Cameron R. Wolfe, 2025)"
+    url: "https://cameronrwolfe.substack.com/p/moe-llms"
+    type: blog
 ---
 
 Mixture of Experts is a modifier on the transformer's [feed-forward network](../feed-forward-networks/) block, not a separate architecture family. A standard ("dense") transformer activates every parameter for every token. MoE replaces each dense feed-forward layer with several parallel expert sub-networks and a small router that picks which experts should process each token. The result: a model with the knowledge capacity of a very large network but the inference cost of a much smaller one, because most experts sit idle for any given token.

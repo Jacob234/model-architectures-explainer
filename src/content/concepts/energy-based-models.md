@@ -3,6 +3,16 @@ title: energy-based models
 tier: family
 kind: generative-framework
 summary: "A framework that assigns a scalar energy to each configuration — low for plausible data, high for everything else. Generation and inference become search: descent on the energy landscape."
+sources:
+  - label: "Implicit Generation and Generalization in Energy-Based Models (Du and Mordatch, 2019)"
+    url: "https://arxiv.org/abs/1903.08689"
+    type: paper
+  - label: "How to Train Your Energy-Based Models (Song and Kingma, 2021)"
+    url: "https://arxiv.org/abs/2101.03288"
+    type: paper
+  - label: "Tutorial 8: Deep Energy-Based Generative Models (UvA Deep Learning Course, Phillip Lippe, 2022)"
+    url: "https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/tutorial8/Deep_Energy_Models.html"
+    type: explainer
 ---
 
 Most generative models output probabilities or samples directly. Energy-based models (EBMs) take a different stance: a model defines a scalar **energy function** `E(x)` that scores how compatible a configuration is with the data. Low energy means "plausible"; high energy means "unlikely." Training shapes the landscape so that real data sits in low-energy valleys and everything else is pushed uphill. To generate a sample, you start from a random configuration and descend the landscape — following the gradient of the energy until you settle somewhere low.

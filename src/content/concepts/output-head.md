@@ -2,6 +2,19 @@
 title: output head
 tier: module
 summary: The final projection from hidden vectors to actual predictions — logits over a vocabulary, class scores, values, or actions.
+sources:
+  - label: "Transformers, the tech behind LLMs — Deep Learning Chapter 5 (3Blue1Brown, 2024)"
+    url: "https://www.3blue1brown.com/lessons/gpt"
+    type: explainer
+  - label: "Using the Output Embedding to Improve Language Models — weight tying (Press and Wolf, 2016)"
+    url: "https://arxiv.org/abs/1608.05859"
+    type: paper
+  - label: "Interpreting GPT: the Logit Lens (nostalgebraist, LessWrong, 2020)"
+    url: "https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens"
+    type: blog
+  - label: "Let's build GPT: from scratch, in code, spelled out (Andrej Karpathy, 2023)"
+    url: "https://www.youtube.com/watch?v=kCc8FmEb1nY"
+    type: video
 ---
 
 The output head is the last step in any neural network: the layer that converts the model's final hidden-state vector into something the outside world can use. In a language model that means a probability distribution over the next token; in an image classifier it means class scores; in a reinforcement-learning agent it means a value estimate and an action distribution. The head is the bridge between abstract internal representation and concrete, task-specific output.

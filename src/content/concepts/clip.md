@@ -6,6 +6,16 @@ summary: Two separate encoders — one for images, one for text — trained so m
 sources:
   - label: "Learning Transferable Visual Models From Natural Language Supervision (Radford et al., 2021)"
     url: "https://arxiv.org/abs/2103.00020"
+    type: paper
+  - label: "CLIP: Connecting Text and Images (OpenAI, 2021)"
+    url: "https://openai.com/index/clip/"
+    type: blog
+  - label: "Contrastive Representation Learning (Lilian Weng, 2021)"
+    url: "https://lilianweng.github.io/posts/2021-05-31-contrastive/"
+    type: blog
+  - label: "Multimodal Neurons in Artificial Neural Networks (Goh et al., Distill, 2021)"
+    url: "https://distill.pub/2021/multimodal-neurons/"
+    type: explainer
 ---
 
 CLIP is not a single tower. It is **two separate

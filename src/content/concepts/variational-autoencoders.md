@@ -3,6 +3,19 @@ title: variational autoencoders (VAEs)
 tier: family
 kind: generative-framework
 summary: An autoencoder whose bottleneck is a probability distribution — rebuild the input, but keep the latent space smooth enough to sample new data from (ELBO = reconstruction + KL). Introduced by Kingma & Welling in 2014.
+sources:
+  - label: "Auto-Encoding Variational Bayes (Kingma and Welling, 2013)"
+    url: "https://arxiv.org/abs/1312.6114"
+    type: paper
+  - label: "Tutorial: What is a Variational Autoencoder? (Jaan Altosaar, 2016)"
+    url: "https://jaan.io/what-is-variational-autoencoder-vae-tutorial/"
+    type: blog
+  - label: "VAE Explainer (Donald Bertucci and Alex Endert, 2024)"
+    url: "https://xnought.github.io/vae-explainer/"
+    type: explainer
+  - label: "An Introduction to Variational Autoencoders (Kingma and Welling, 2019)"
+    url: "https://arxiv.org/abs/1906.02691"
+    type: paper
 ---
 
 A variational autoencoder is a generative model built on the

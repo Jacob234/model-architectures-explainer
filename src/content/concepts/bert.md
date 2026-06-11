@@ -6,6 +6,13 @@ summary: A stack of bidirectional encoder blocks trained to fill in masked words
 sources:
   - label: "BERT: Pre-training of Deep Bidirectional Transformers (Devlin et al., 2018)"
     url: "https://arxiv.org/abs/1810.04805"
+    type: paper
+  - label: "The Illustrated BERT, ELMo, and co. (Jay Alammar, 2018)"
+    url: "https://jalammar.github.io/illustrated-bert/"
+    type: blog
+  - label: "BERT 101 — State of the Art NLP Model Explained (Hugging Face, 2022)"
+    url: "https://huggingface.co/blog/bert-101"
+    type: blog
 ---
 
 BERT — Bidirectional Encoder Representations from Transformers — made the opposite architectural bet from GPT. Where GPT predicts the next token left-to-right, BERT masks random tokens and predicts them using context from both directions simultaneously. That bidirectional view produces richer representations for tasks that require understanding rather than generation: classification, entity recognition, question answering, semantic similarity. Introduced by Google Research in 2018, BERT dominated NLP benchmarks for two years and cemented the pretrain-then-fine-tune paradigm that every modern language model follows.

@@ -2,6 +2,19 @@
 title: expert routing
 tier: primitive
 summary: Learned switches that decide what flows where — the gates controlling information inside an LSTM cell, and the router picking which experts process each token in a mixture-of-experts model.
+sources:
+  - label: "Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer (Shazeer et al., 2017)"
+    url: "https://arxiv.org/abs/1701.06538"
+    type: paper
+  - label: "Understanding LSTM Networks (colah, 2015)"
+    url: "https://colah.github.io/posts/2015-08-Understanding-LSTMs/"
+    type: blog
+  - label: "Mixture of Experts Explained (Hugging Face, 2023)"
+    url: "https://huggingface.co/blog/moe"
+    type: blog
+  - label: "Mixture-of-Experts with Expert Choice Routing (Zhou et al., 2022)"
+    url: "https://arxiv.org/abs/2202.09368"
+    type: paper
 ---
 
 "Routing" and "gating" are two flavors of the same idea: a learned function decides what information flows forward and what gets suppressed. In recurrent networks, gates control what a cell remembers or forgets from step to step. In [mixture-of-experts](../mixture-of-experts/) models, a router sends each token to a small subset of specialized sub-networks. Both are mechanisms for selective, conditional computation.

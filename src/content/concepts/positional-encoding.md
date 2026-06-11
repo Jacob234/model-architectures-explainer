@@ -5,8 +5,19 @@ summary: Injects token-order information into a transformer, because attention a
 sources:
   - label: "Attention Is All You Need (Vaswani et al., 2017)"
     url: "https://arxiv.org/abs/1706.03762"
+    type: paper
   - label: "RoFormer: Enhanced Transformer with Rotary Position Embedding (Su et al., 2021)"
     url: "https://arxiv.org/abs/2104.09864"
+    type: paper
+  - label: "Transformer Architecture: The Positional Encoding (Amirhossein Kazemnejad, 2019)"
+    url: "https://kazemnejad.com/blog/transformer_architecture_positional_encoding/"
+    type: blog
+  - label: "Rotary Embeddings: A Relative Revolution (EleutherAI, 2021)"
+    url: "https://blog.eleuther.ai/rotary-embeddings/"
+    type: blog
+  - label: "You Could Have Designed State of the Art Positional Encoding (Christopher Fleetwood, Hugging Face, 2024)"
+    url: "https://huggingface.co/blog/designing-positional-encoding"
+    type: blog
 ---
 
 [Attention mechanisms](../attention-mechanisms/) are inherently order-blind. When a query vector asks which keys are relevant, it compares against all keys simultaneously with no notion of position — the result is the same whether the input tokens appear in their correct order or scrambled. A recurrent network processes tokens one at a time, so position is implicit in the sequence of steps. Transformers process all positions in parallel, so position must be made explicit.

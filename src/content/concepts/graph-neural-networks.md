@@ -3,6 +3,16 @@ title: graph neural networks (GNNs)
 tier: family
 kind: backbone
 summary: Neural networks that operate on graph-structured data by passing messages between connected nodes. The objective varies — node classification, link prediction, or graph classification — making GNNs a backbone, not a single model.
+sources:
+  - label: "Semi-Supervised Classification with Graph Convolutional Networks (Kipf & Welling, 2017)"
+    url: "https://arxiv.org/abs/1609.02907"
+    type: paper
+  - label: "A Gentle Introduction to Graph Neural Networks (Distill, 2021)"
+    url: "https://distill.pub/2021/gnn-intro/"
+    type: explainer
+  - label: "Understanding Convolutions on Graphs (Distill, 2021)"
+    url: "https://distill.pub/2021/understanding-gnns/"
+    type: explainer
 ---
 
 Standard neural networks expect fixed-size vectors or grids. Graphs break both assumptions: a molecule has a variable number of atoms, a social network has a variable number of friends, and both have explicit topology — who is connected to whom. Graph neural networks (GNNs) learn directly from that topology alongside node and edge features, making them the natural choice for chemistry, recommendation systems, knowledge-base reasoning, and any domain where relationships are first-class data.

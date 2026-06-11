@@ -3,6 +3,16 @@ title: recurrent neural networks (RNN/LSTM)
 tier: family
 kind: backbone
 summary: Processes sequences one step at a time, carrying a hidden state forward as a running memory; LSTM adds gates so memory survives long sequences. The pre-transformer default for language — and a backbone whose training objective is not fixed.
+sources:
+  - label: "Long Short-Term Memory (Hochreiter & Schmidhuber, 1997)"
+    url: "https://deeplearning.cs.cmu.edu/F23/document/readings/LSTM.pdf"
+    type: paper
+  - label: "Understanding LSTM Networks (colah, 2015)"
+    url: "https://colah.github.io/posts/2015-08-Understanding-LSTMs/"
+    type: blog
+  - label: "The Unreasonable Effectiveness of Recurrent Neural Networks (Karpathy, 2015)"
+    url: "https://karpathy.github.io/2015/05/21/rnn-effectiveness/"
+    type: blog
 ---
 
 A recurrent neural network processes a sequence by reading one element at a time and carrying a hidden state forward — a compressed running summary of everything seen so far. This is both a primitive operation (the recurrence step itself) and the basis for an entire family of sequence models that dominated NLP, speech, and time-series work for roughly two decades before transformers took over.

@@ -3,6 +3,19 @@ title: large language models (LLMs)
 tier: family
 kind: model-class
 summary: A large model trained to predict the next token; the dominant form stacks decoder blocks at enormous scale (GPT, Claude, Llama). "LLM" is a category, not one architecture — the invariant is the autoregressive objective applied at scale.
+sources:
+  - label: "Transformer Explainer (Polo Club of Data Science)"
+    url: "https://poloclub.github.io/transformer-explainer/"
+    type: explainer
+  - label: "Language Models are Few-Shot Learners — GPT-3 (Brown et al., 2020)"
+    url: "https://arxiv.org/abs/2005.14165"
+    type: paper
+  - label: "The Illustrated GPT-2 (Jay Alammar, 2019)"
+    url: "https://jalammar.github.io/illustrated-gpt2/"
+    type: blog
+  - label: "Intro to Large Language Models — 1hr Talk (Andrej Karpathy, 2023)"
+    url: "https://www.youtube.com/watch?v=zjkBMFhNj_g"
+    type: video
 ---
 
 Large language models are neural networks trained on massive text corpora to predict the next token in a sequence. That deceptively simple objective — given everything so far, what comes next? — turns out, at sufficient scale, to produce systems that can reason, write code, answer questions, and follow instructions. The technology behind ChatGPT, Claude, and Llama is the product of this one training signal applied to billions of parameters and trillions of tokens.

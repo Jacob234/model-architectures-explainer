@@ -3,6 +3,19 @@ title: flow matching
 tier: family
 kind: generative-framework
 summary: A generative training objective that learns a velocity field transporting noise to data along straight paths — fewer sampling steps than diffusion, same backbone architectures (SD3, Flux).
+sources:
+  - label: "Flow Matching for Generative Modeling (Lipman et al., 2022)"
+    url: "https://arxiv.org/abs/2210.02747"
+    type: paper
+  - label: "An Introduction to Flow Matching (Fjelde, Mathieu and Dutordoir, Cambridge MLG, 2024)"
+    url: "https://mlg.eng.cam.ac.uk/blog/2024/01/20/flow-matching.html"
+    type: blog
+  - label: "Diffusion Meets Flow Matching: Two Sides of the Same Coin (Google DeepMind, 2024)"
+    url: "https://diffusionflow.github.io/"
+    type: blog
+  - label: "Flow Matching Guide and Code (Lipman et al., 2024)"
+    url: "https://arxiv.org/abs/2412.06264"
+    type: paper
 ---
 
 [Diffusion models](../diffusion-models/) generate images by reversing a noising process across hundreds of small steps. Flow matching is a closely related — and in many formulations more general — alternative: instead of learning to denoise step by step, it trains a network to regress the **velocity field** that, if you follow it as an ordinary differential equation, carries a noise sample directly to a data sample. Because the learned paths are straighter, accurate samples typically need far fewer integration steps at generation time.

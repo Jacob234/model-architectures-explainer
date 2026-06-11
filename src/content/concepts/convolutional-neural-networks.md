@@ -3,6 +3,19 @@ title: convolutional neural networks (CNNs)
 tier: family
 kind: backbone
 summary: Stacks of sliding learned filters that detect local patterns and compose them into global understanding — the vision default before ViT (ResNet, EfficientNet). The training objective is not fixed; the same backbone is used for supervised, self-supervised, and contrastive learning.
+sources:
+  - label: "CNN Explainer (Polo Club of Data Science)"
+    url: "https://poloclub.github.io/cnn-explainer/"
+    type: explainer
+  - label: "ImageNet Classification with Deep Convolutional Neural Networks (Krizhevsky et al., 2012)"
+    url: "https://proceedings.neurips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html"
+    type: paper
+  - label: "Convolutional Neural Networks Course Notes (Stanford CS231n)"
+    url: "https://cs231n.github.io/convolutional-networks/"
+    type: blog
+  - label: "Feature Visualization (Olah et al., Distill, 2017)"
+    url: "https://distill.pub/2017/feature-visualization/"
+    type: explainer
 ---
 
 A convolutional neural network is a neural network that processes spatial data — images, audio, any input with local structure — using a sliding learned filter rather than treating every input position independently. This is both a primitive operation and a full architectural family built on top of it.

@@ -5,6 +5,13 @@ summary: Reads the whole input at once — bidirectionally — and produces a co
 sources:
   - label: "Attention Is All You Need (Vaswani et al., 2017)"
     url: "https://arxiv.org/abs/1706.03762"
+    type: paper
+  - label: "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (Devlin et al., 2018)"
+    url: "https://arxiv.org/abs/1810.04805"
+    type: paper
+  - label: "The Illustrated BERT, ELMo, and co. (Jay Alammar, 2018)"
+    url: "https://jalammar.github.io/illustrated-bert/"
+    type: blog
 ---
 
 An encoder is a stack of identical blocks that turns a raw input sequence into a

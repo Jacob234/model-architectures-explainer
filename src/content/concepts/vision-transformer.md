@@ -3,6 +3,16 @@ title: Vision Transformer (ViT)
 tier: family
 kind: backbone
 summary: Chops an image into patches, embeds each like a token, and runs a standard encoder over them. The training objective is not fixed — ViT is a backbone used for supervised classification, masked autoencoding, and contrastive learning alike.
+sources:
+  - label: "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (Dosovitskiy et al., 2020)"
+    url: "https://arxiv.org/abs/2010.11929"
+    type: paper
+  - label: "Transformers for Image Recognition at Scale (Google Research Blog, 2020)"
+    url: "https://research.google/blog/transformers-for-image-recognition-at-scale/"
+    type: blog
+  - label: "An Image is Worth 16x16 Words — Paper Explained (Yannic Kilcher, 2020)"
+    url: "https://www.youtube.com/watch?v=TrdevFK_am4"
+    type: video
 ---
 
 The Vision Transformer (ViT), introduced by Dosovitskiy et al. in 2020, made a provocative claim: convolution is not necessary for state-of-the-art image recognition. Split an image into small patches, treat each patch as a token, and feed the sequence to a standard transformer [encoder](../encoder/). Given enough pretraining data, this approach matches or beats convolutional networks on image classification — and it has since become the dominant visual backbone for multimodal AI.

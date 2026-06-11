@@ -2,6 +2,16 @@
 title: diffusion transformer (DiT)
 tier: module
 summary: A transformer backbone used as the denoiser inside a diffusion model — the architecture that replaced the convolutional U-Net in nearly every frontier image and video generation system.
+sources:
+  - label: "Scalable Diffusion Models with Transformers (Peebles and Xie, 2022)"
+    url: "https://arxiv.org/abs/2212.09748"
+    type: paper
+  - label: "DiT Project Page (William Peebles, 2022)"
+    url: "https://www.wpeebles.com/DiT"
+    type: explainer
+  - label: "DiT Explanation and Implementation (ExplainingAI, 2024)"
+    url: "https://www.youtube.com/watch?v=aSLDXdc2hkk"
+    type: video
 ---
 
 DiT is a denoiser-backbone variant inside [diffusion models](../diffusion-models/), not a separate model family. Diffusion models generate images by repeatedly denoising a noisy input; the question is what network performs the denoising at each step. The first generation used a convolutional U-Net. DiT — introduced by Peebles and Xie in 2022 — replaces that U-Net with a transformer, giving diffusion the same clean scaling story that powered large language models: make the transformer bigger or deeper, and sample quality reliably improves. DiT is now the backbone of essentially every frontier image and video generation system: Stable Diffusion 3, PixArt, Flux, and Sora-class video models all use it.

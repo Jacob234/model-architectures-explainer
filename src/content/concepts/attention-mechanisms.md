@@ -5,8 +5,19 @@ summary: Lets every position look at every other position and mix in what's rele
 sources:
   - label: "Neural Machine Translation by Jointly Learning to Align and Translate (Bahdanau et al., 2014)"
     url: "https://arxiv.org/abs/1409.0473"
+    type: paper
   - label: "Attention Is All You Need (Vaswani et al., 2017)"
     url: "https://arxiv.org/abs/1706.03762"
+    type: paper
+  - label: "Attention? Attention! (Lilian Weng, 2018)"
+    url: "https://lilianweng.github.io/posts/2018-06-24-attention/"
+    type: blog
+  - label: "Attention and Augmented Recurrent Neural Networks (Olah & Carter, Distill, 2016)"
+    url: "https://distill.pub/2016/augmented-rnns/"
+    type: explainer
+  - label: "Attention in Transformers, Step-by-Step (3Blue1Brown, 2024)"
+    url: "https://www.youtube.com/watch?v=eMlx5fFNoYc"
+    type: video
 ---
 
 Attention lets a neural network focus on the most relevant parts of its input

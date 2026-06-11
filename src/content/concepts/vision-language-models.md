@@ -3,6 +3,19 @@ title: vision-language models (VLMs)
 tier: family
 kind: model-class
 summary: A composition of a vision encoder and an LLM decoder — not a new wiring, but a projector-bridged assembly that lets a language model process images alongside text (LLaVA, Flamingo).
+sources:
+  - label: "Visual Instruction Tuning — LLaVA (Liu et al., 2023)"
+    url: "https://arxiv.org/abs/2304.08485"
+    type: paper
+  - label: "Flamingo: a Visual Language Model for Few-Shot Learning (Alayrac et al., 2022)"
+    url: "https://arxiv.org/abs/2204.14198"
+    type: paper
+  - label: "Generalized Visual Language Models (Lilian Weng, 2022)"
+    url: "https://lilianweng.github.io/posts/2022-06-09-vlm/"
+    type: blog
+  - label: "Vision Language Models Explained (Hugging Face, 2024)"
+    url: "https://huggingface.co/blog/vlms"
+    type: blog
 ---
 
 A vision-language model (VLM) is a **composition**, not a fundamentally new architecture. The dominant recipe takes three existing pieces and connects them: a visual [encoder](../encoder/) (typically a [Vision Transformer](../vision-transformer/)) converts image patches into feature vectors; a lightweight projector maps those vectors into the [LLM](../large-language-models/)'s token space; and the LLM [decoder](../decoder/) processes interleaved image and text tokens together. The LLM never sees raw pixels — only the encoder's compressed representation, spliced into the token stream like a "foreign language."

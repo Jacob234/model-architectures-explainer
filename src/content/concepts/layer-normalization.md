@@ -5,6 +5,19 @@ summary: Rescales each token's activations to zero mean and unit variance at eve
 sources:
   - label: "Attention Is All You Need (Vaswani et al., 2017)"
     url: "https://arxiv.org/abs/1706.03762"
+    type: paper
+  - label: "Layer Normalization (Ba, Kiros & Hinton, 2016)"
+    url: "https://arxiv.org/abs/1607.06450"
+    type: paper
+  - label: "Root Mean Square Layer Normalization (Zhang & Sennrich, 2019)"
+    url: "https://arxiv.org/abs/1910.07467"
+    type: paper
+  - label: "On Layer Normalization in the Transformer Architecture (Xiong et al., 2020)"
+    url: "https://arxiv.org/abs/2002.04745"
+    type: paper
+  - label: "Batch and Layer Normalization (Pinecone, 2022)"
+    url: "https://www.pinecone.io/learn/batch-layer-normalization/"
+    type: blog
 ---
 
 Deep networks have a training problem: as activations flow through dozens of layers, their distributions shift in unpredictable ways. A layer that expects inputs centered near zero might receive values an order of magnitude larger, pushing activations into saturation or instability. Layer normalization fixes this by standardizing each token's representation at every layer — zero mean, unit variance — before passing it to the next operation.

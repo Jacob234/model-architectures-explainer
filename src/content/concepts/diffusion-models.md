@@ -3,6 +3,22 @@ title: diffusion models
 tier: family
 kind: generative-framework
 summary: Generate by reversing noise — start from static and repeatedly denoise until an image (or video) emerges. The denoiser inside is swappable, and flow matching is the straight-line successor that trains most modern systems.
+sources:
+  - label: "Diffusion Explainer (Polo Club of Data Science)"
+    url: "https://poloclub.github.io/diffusion-explainer/"
+    type: explainer
+  - label: "Denoising Diffusion Probabilistic Models (Ho et al., 2020)"
+    url: "https://arxiv.org/abs/2006.11239"
+    type: paper
+  - label: "What are Diffusion Models? (Lilian Weng, 2021)"
+    url: "https://lilianweng.github.io/posts/2021-07-11-diffusion-models/"
+    type: blog
+  - label: "Generative Modeling by Estimating Gradients of the Data Distribution (Yang Song, 2021)"
+    url: "https://yang-song.net/blog/2021/score/"
+    type: blog
+  - label: "The Annotated Diffusion Model (Rogge and Rasul, Hugging Face, 2022)"
+    url: "https://huggingface.co/blog/annotated-diffusion"
+    type: blog
 ---
 
 Diffusion models generate images (and audio, video, and 3D content) by learning to reverse a gradual noising process. The training recipe: take a real image, add Gaussian noise step by step until it's pure static, then train a neural network to predict the noise at each step. Generation runs that process in reverse — start from random noise and repeatedly subtract predicted noise until a coherent image emerges. This approach overtook generative adversarial networks as the dominant image generation framework around 2021–2022 and now powers Stable Diffusion, DALL-E 3, Midjourney, and Imagen.

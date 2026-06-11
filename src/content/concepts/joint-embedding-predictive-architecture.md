@@ -3,6 +3,16 @@ title: JEPA (joint-embedding predictive architecture)
 tier: family
 kind: architecture
 summary: Predict the representation of hidden content rather than its pixels — LeCun's alternative to generative pretraining, using an encoder plus a predictor to learn in latent space (I-JEPA, V-JEPA).
+sources:
+  - label: "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture — I-JEPA (Assran et al., 2023)"
+    url: "https://arxiv.org/abs/2301.08243"
+    type: paper
+  - label: "I-JEPA: The first AI model based on Yann LeCun vision for more human-like AI (Meta AI, 2023)"
+    url: "https://ai.meta.com/blog/yann-lecun-ai-model-i-jepa/"
+    type: blog
+  - label: "A Path Towards Autonomous Machine Intelligence (Yann LeCun, 2022)"
+    url: "https://openreview.net/forum?id=BZ5a1r-kVsf"
+    type: paper
 ---
 
 Most self-supervised pretraining asks a model to reconstruct masked content at

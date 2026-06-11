@@ -5,6 +5,16 @@ summary: Generates output one token at a time, each step attending only to what 
 sources:
   - label: "Attention Is All You Need (Vaswani et al., 2017)"
     url: "https://arxiv.org/abs/1706.03762"
+    type: paper
+  - label: "Improving Language Understanding by Generative Pre-Training (Radford et al., 2018)"
+    url: "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf"
+    type: paper
+  - label: "The Illustrated GPT-2 (Jay Alammar, 2019)"
+    url: "https://jalammar.github.io/illustrated-gpt2/"
+    type: blog
+  - label: "Let's Build GPT: From Scratch, in Code, Spelled Out (Andrej Karpathy, 2023)"
+    url: "https://www.youtube.com/watch?v=kCc8FmEb1nY"
+    type: video
 ---
 
 A decoder is a stack of blocks that generates an output sequence

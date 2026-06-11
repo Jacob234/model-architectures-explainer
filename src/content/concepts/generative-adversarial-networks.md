@@ -3,6 +3,16 @@ title: generative adversarial networks (GANs)
 tier: family
 kind: generative-framework
 summary: A generator forges samples while a discriminator learns to spot fakes; trained against each other until the forgeries get good (StyleGAN). Introduced by Goodfellow et al. in 2014.
+sources:
+  - label: "GAN Lab (Polo Club of Data Science)"
+    url: "https://poloclub.github.io/ganlab/"
+    type: explainer
+  - label: "Generative Adversarial Networks (Goodfellow et al., 2014)"
+    url: "https://arxiv.org/abs/1406.2661"
+    type: paper
+  - label: "From GAN to WGAN (Lilian Weng, 2017)"
+    url: "https://lilianweng.github.io/posts/2017-08-20-gan/"
+    type: blog
 ---
 
 Generative adversarial networks pit two networks against each other in a minimax

@@ -5,6 +5,16 @@ summary: Shares key/value projections across query heads to shrink the KV cache 
 sources:
   - label: "GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints (Ainslie et al., 2023)"
     url: "https://arxiv.org/abs/2305.13245"
+    type: paper
+  - label: "Fast Transformer Decoding: One Write-Head is All You Need — MQA (Shazeer, 2019)"
+    url: "https://arxiv.org/abs/1911.02150"
+    type: paper
+  - label: "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model — introduces MLA (DeepSeek-AI, 2024)"
+    url: "https://arxiv.org/abs/2405.04434"
+    type: paper
+  - label: "The Big LLM Architecture Comparison (Sebastian Raschka, 2025)"
+    url: "https://magazine.sebastianraschka.com/p/the-big-llm-architecture-comparison"
+    type: blog
 ---
 
 Attention head sharing is a modifier on the [attention mechanisms](../attention-mechanisms/) sublayer, not a separate architecture family. Standard multi-head attention (MHA) gives every query head its own key and value projections — maximum expressiveness, but maximum memory during generation. At inference, these projections are cached for every past token (the KV cache), growing proportionally with context length and batch size. Head sharing reduces that cache by reusing key/value projections across multiple query heads.

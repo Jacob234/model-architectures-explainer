@@ -5,6 +5,16 @@ summary: A small per-position neural net applied identically at every token posi
 sources:
   - label: "Attention Is All You Need (Vaswani et al., 2017)"
     url: "https://arxiv.org/abs/1706.03762"
+    type: paper
+  - label: "Transformer Feed-Forward Layers Are Key-Value Memories (Geva et al., 2021)"
+    url: "https://arxiv.org/abs/2012.14913"
+    type: paper
+  - label: "GLU Variants Improve Transformer (Shazeer, 2020)"
+    url: "https://arxiv.org/abs/2002.05202"
+    type: paper
+  - label: "How Might LLMs Store Facts (3Blue1Brown, 2024)"
+    url: "https://www.youtube.com/watch?v=9-Jl0dxWQs8"
+    type: video
 ---
 
 Every transformer block contains two sub-layers: an attention layer that mixes information *across* positions, and a feed-forward network (FFN) that processes each position *independently*. The FFN is easy to overlook beside attention, but it holds roughly two-thirds of a transformer's parameters and is increasingly understood as the primary place where models store factual knowledge.

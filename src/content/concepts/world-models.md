@@ -3,6 +3,16 @@ title: world models
 tier: family
 kind: model-class
 summary: A learned model of an environment's dynamics that lets an agent predict what happens next and plan ahead. A goal, not one wiring — the architecture and objective vary significantly across implementations.
+sources:
+  - label: "World Models (Ha and Schmidhuber, 2018)"
+    url: "https://arxiv.org/abs/1803.10122"
+    type: paper
+  - label: "World Models — interactive companion article (Ha and Schmidhuber, 2018)"
+    url: "https://worldmodels.github.io/"
+    type: explainer
+  - label: "Genie 2: A large-scale foundation world model (Google DeepMind, 2024)"
+    url: "https://deepmind.google/discover/blog/genie-2-a-large-scale-foundation-world-model/"
+    type: blog
 ---
 
 A world model is the "imagination" half of an intelligent agent: instead of acting only on the current observation, the agent rolls its model of the environment forward to predict future states, evaluate counterfactuals, or generate entirely new situations to learn from. The term covers two related ideas that are worth keeping distinct.

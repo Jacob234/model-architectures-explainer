@@ -6,6 +6,16 @@ summary: An encoder reads the source sequence; a decoder generates the target wh
 sources:
   - label: "Attention Is All You Need (Vaswani et al., 2017)"
     url: "https://arxiv.org/abs/1706.03762"
+    type: paper
+  - label: "Sequence to Sequence Learning with Neural Networks (Sutskever et al., 2014)"
+    url: "https://arxiv.org/abs/1409.3215"
+    type: paper
+  - label: "Neural Machine Translation by Jointly Learning to Align and Translate (Bahdanau et al., 2014)"
+    url: "https://arxiv.org/abs/1409.0473"
+    type: paper
+  - label: "Visualizing a Neural Machine Translation Model (Jay Alammar, 2018)"
+    url: "https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/"
+    type: explainer
 ---
 
 An encoder–decoder (or seq2seq) model splits the work of reading and writing between two separate networks. The [encoder](../encoder/) processes the full input at once and produces a contextual representation. The [decoder](../decoder/) then generates the output one token at a time, attending to the encoder's representation at every step via cross-attention. This architecture handles variable-length inputs and outputs naturally — a 5-word source sentence can produce a 12-word translation — and it was the design that drove machine translation, summarization, and dialogue from the mid-2010s onward.
