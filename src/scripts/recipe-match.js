@@ -25,6 +25,7 @@ export function matchRecipe({ modules, objective }, families) {
     else if (setEq(sel, fam) && f.objective === 'varies') alsoFits.push(f);
     else rest.push(f);
   }
+  // slice(0, 4): cap per spec; families-array order determines which 4 survive
   const oneStep = rest.filter((f) => distance(sel, objective, f) === 1).slice(0, 4);
   const fallback = exact.length || alsoFits.length || oneStep.length
     ? []
@@ -33,7 +34,8 @@ export function matchRecipe({ modules, objective }, families) {
 }
 
 // Describe the single edit separating a oneStep family from the selection.
-// Only meaningful for distance-1 families.
+// Only valid for distance-1 families; for distance > 1 the fall-through
+// branch fires with a misleading result, not an error.
 export function editHint({ modules, objective }, f) {
   const sel = new Set(modules);
   const fam = new Set(f.modules ?? []);

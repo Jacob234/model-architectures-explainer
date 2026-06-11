@@ -94,3 +94,11 @@ test('editHint describes the single edit', () => {
   assert.deepEqual(editHint({ modules: ['decoder', 'output-head'], objective: 'masked' }, llm),
     { kind: 'swap-objective', what: 'autoregressive' });
 });
+
+test('oneStep includes concrete-objective family when user has no objective set', () => {
+  const r = matchRecipe({ modules: [], objective: null }, FAMILIES);
+  // cnn goes to alsoFits (varies); energy is distance-1 (objective penalty only)
+  assert.ok(ids(r.oneStep).includes('energy'));
+  assert.deepEqual(editHint({ modules: [], objective: null }, FAMILIES.find((f) => f.id === 'energy')),
+    { kind: 'swap-objective', what: 'energy' });
+});
