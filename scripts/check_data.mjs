@@ -128,6 +128,39 @@ export function validateSources({ pages, candidates, conceptSlugs }) {
   return errors;
 }
 
+// --- differentiator lint ---
+// Families sharing an exact (modules-set, objective) recipe MUST each carry a
+// `differentiator` one-liner (the builder shows these at collision time), and
+// only collision members may carry one — keeps the field meaningful.
+// 'varies' objectives are wildcard backbones, exempt from grouping.
+export function validateDifferentiators(families) {
+  const errors = [];
+  const groups = new Map();
+  for (const f of families) {
+    if (f.objective === 'varies') continue;
+    const key = `${[...(f.modules ?? [])].sort().join('+')}|${f.objective}`;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(f);
+  }
+  const inCollision = new Set();
+  for (const members of groups.values()) {
+    if (members.length < 2) continue;
+    for (const f of members) {
+      inCollision.add(f.id);
+      if (typeof f.differentiator !== 'string' || !f.differentiator.trim()) {
+        const others = members.filter((m) => m !== f).map((m) => m.id).join(', ');
+        errors.push(`family ${f.id}: shares recipe with ${others} but has no differentiator`);
+      }
+    }
+  }
+  for (const f of families) {
+    if (f.differentiator != null && !inCollision.has(f.id)) {
+      errors.push(`family ${f.id}: has a differentiator but no recipe collision`);
+    }
+  }
+  return errors;
+}
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
   const data = JSON.parse(readFileSync(path.join(root, 'src/data/explainer.json'), 'utf8'));
@@ -141,6 +174,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   errors.push(...validateBodyLinks(pages, slugSet));
   const { candidates } = JSON.parse(readFileSync(path.join(root, 'src/data/candidates.json'), 'utf8'));
   errors.push(...validateSources({ pages, candidates, conceptSlugs: slugSet }));
+  errors.push(...validateDifferentiators(data.families));
   if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
   const sourceCount = Object.values(pages).reduce((n, b) => n + extractFrontmatterSources(b).sources.length, 0) +
     candidates.reduce((n, c) => n + c.sources.length, 0);

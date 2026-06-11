@@ -104,3 +104,40 @@ test('unrecognized internal link shape -> error', () => {
   assert.equal(errors.length, 1);
   assert.match(errors[0], /unrecognized internal link/);
 });
+
+// --- differentiator lint ---
+import { validateDifferentiators } from '../scripts/check_data.mjs';
+
+test('collision group members all need differentiators', () => {
+  const fams = [
+    { id: 'a', modules: ['x'], objective: 'o', differentiator: 'plain' },
+    { id: 'b', modules: ['x'], objective: 'o' },
+  ];
+  assert.match(validateDifferentiators(fams).join('\n'),
+    /family b: shares recipe with a but has no differentiator/);
+});
+
+test('differentiator outside a collision group is flagged', () => {
+  const fams = [
+    { id: 'a', modules: ['x'], objective: 'o', differentiator: 'stray' },
+    { id: 'b', modules: ['y'], objective: 'o' },
+  ];
+  assert.match(validateDifferentiators(fams).join('\n'),
+    /family a: has a differentiator but no recipe collision/);
+});
+
+test('varies families are exempt from collision grouping', () => {
+  const fams = [
+    { id: 'cnn', modules: [], objective: 'varies' },
+    { id: 'rnn', modules: [], objective: 'varies' },
+  ];
+  assert.deepEqual(validateDifferentiators(fams), []);
+});
+
+test('complete collision group passes', () => {
+  const fams = [
+    { id: 'a', modules: ['x'], objective: 'o', differentiator: 'one' },
+    { id: 'b', modules: ['x'], objective: 'o', differentiator: 'two' },
+  ];
+  assert.deepEqual(validateDifferentiators(fams), []);
+});
