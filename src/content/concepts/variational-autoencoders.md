@@ -6,10 +6,10 @@ summary: An autoencoder whose bottleneck is a probability distribution — rebui
 ---
 
 A variational autoencoder is a generative model built on the
-[autoencoder](/concepts/autoencoders/) pattern, with one crucial change: the
+[autoencoder](../autoencoders/) pattern, with one crucial change: the
 bottleneck is a **probability distribution** rather than a fixed vector. The
-[encoder](/concepts/encoder/) maps each input to a mean and variance describing a
-Gaussian in latent space; the [decoder](/concepts/decoder/) reconstructs the input
+[encoder](../encoder/) maps each input to a mean and variance describing a
+Gaussian in latent space; the [decoder](../decoder/) reconstructs the input
 from a sample drawn from that Gaussian. The result is a latent space that is
 continuous and smooth — you can sample new points anywhere in it and get
 plausible outputs, and you can interpolate between two inputs and get a
@@ -42,8 +42,8 @@ This is the basis of token-based image and audio generation.
 ## Where you'll see it
 
 VAEs are less commonly used as standalone image generators today — their outputs
-tend to be blurrier than [diffusion model](/concepts/diffusion-models/) or
-[GAN](/concepts/generative-adversarial-networks/) outputs. Their bigger role is
+tend to be blurrier than [diffusion model](../diffusion-models/) or
+[GAN](../generative-adversarial-networks/) outputs. Their bigger role is
 as a **compression front-end**: latent diffusion models (including Stable
 Diffusion) use a pretrained VAE to compress high-resolution images into a compact
 latent space where diffusion actually runs, then decode back to pixels. This
@@ -51,8 +51,8 @@ compression is what made high-resolution diffusion computationally tractable.
 
 ## Related concepts
 
-- [autoencoders](/concepts/autoencoders/) — the parent pattern; VAEs are the probabilistic, generative member of the family
-- [diffusion models](/concepts/diffusion-models/) — depend on the VAE encoder/decoder for latent-space efficiency
-- [generative adversarial networks](/concepts/generative-adversarial-networks/) — the contrasting generative model; adversarial and sharp-but-unstable vs. VAE's likelihood-based stability
-- [encoder](/concepts/encoder/) — outputs a latent distribution (mean + variance) rather than a point
-- [decoder](/concepts/decoder/) — reconstructs input from a sampled latent code
+- [autoencoders](../autoencoders/) — the parent pattern; VAEs are the probabilistic, generative member of the family
+- [diffusion models](../diffusion-models/) — depend on the VAE encoder/decoder for latent-space efficiency
+- [generative adversarial networks](../generative-adversarial-networks/) — the contrasting generative model; adversarial and sharp-but-unstable vs. VAE's likelihood-based stability
+- [encoder](../encoder/) — outputs a latent distribution (mean + variance) rather than a point
+- [decoder](../decoder/) — reconstructs input from a sampled latent code

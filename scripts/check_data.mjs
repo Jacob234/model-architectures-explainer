@@ -47,12 +47,40 @@ export function validate(data, conceptFiles) {
   return errors;
 }
 
+// Body-link lint for concept-page markdown. Two invariants:
+// 1. No absolute-path internal links — `](/concepts/x/)` bypasses Astro's `base`
+//    and 404s on GitHub Pages (shipped once, 2026-06-11). Internal links must be
+//    relative (`](../x/)`), which resolves correctly under any base.
+// 2. Every relative concept link must target an existing page slug.
+export function validateBodyLinks(pages, slugSet) {
+  const errors = [];
+  for (const [file, body] of Object.entries(pages)) {
+    for (const m of body.matchAll(/\]\(([^)]+)\)/g)) {
+      const target = m[1];
+      if (/^(https?:)?\/\//.test(target) || target.startsWith('#') || target.startsWith('mailto:')) continue;
+      if (target.startsWith('/')) {
+        errors.push(`${file}: absolute internal link "${target}" (use a relative ../slug/ link)`);
+      } else {
+        const rel = target.match(/^\.\.\/([a-z0-9-]+)\/?(?:#.*)?$/);
+        if (!rel) errors.push(`${file}: unrecognized internal link "${target}"`);
+        else if (!slugSet.has(rel[1])) errors.push(`${file}: link to missing concept page "${rel[1]}"`);
+      }
+    }
+  }
+  return errors;
+}
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
   const data = JSON.parse(readFileSync(path.join(root, 'src/data/explainer.json'), 'utf8'));
   let files = [];
   try { files = readdirSync(path.join(root, 'src/content/concepts')); } catch { /* dir absent until Task 4 */ }
   const errors = validate(data, files);
+  const conceptsDir = path.join(root, 'src/content/concepts');
+  const pages = Object.fromEntries(files.filter((f) => f.endsWith('.md'))
+    .map((f) => [f, readFileSync(path.join(conceptsDir, f), 'utf8')]));
+  const slugSet = new Set(Object.keys(pages).map((f) => f.slice(0, -3)));
+  errors.push(...validateBodyLinks(pages, slugSet));
   if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
   console.log(`OK primitives=${data.primitives.length} modules=${data.modules.length} ` +
     `modifiers=${data.modifiers.length} objectives=${data.objectives.length} ` +

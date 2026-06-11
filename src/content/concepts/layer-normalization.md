@@ -27,10 +27,10 @@ The learned parameters γ (scale) and β (shift) let the network undo the normal
 
 ## Where you'll see it
 
-Layer normalization appears at every sub-layer in every transformer block, always paired with [residual connections](/concepts/residual-connections/). [Encoders](/concepts/encoder/) and [decoders](/concepts/decoder/) both apply it around their attention and feed-forward sub-layers. [Vision Transformers](/concepts/vision-transformer/) apply the same pattern to image patches.
+Layer normalization appears at every sub-layer in every transformer block, always paired with [residual connections](../residual-connections/). [Encoders](../encoder/) and [decoders](../decoder/) both apply it around their attention and feed-forward sub-layers. [Vision Transformers](../vision-transformer/) apply the same pattern to image patches.
 
 ## Related concepts
 
-- [residual connections](/concepts/residual-connections/) — always paired with layer norm; together they make deep stacks trainable
-- [feed-forward networks](/concepts/feed-forward-networks/) — one of the two sub-layers layer norm wraps in each block
-- [attention mechanisms](/concepts/attention-mechanisms/) — the other sub-layer layer norm wraps
+- [residual connections](../residual-connections/) — always paired with layer norm; together they make deep stacks trainable
+- [feed-forward networks](../feed-forward-networks/) — one of the two sub-layers layer norm wraps in each block
+- [attention mechanisms](../attention-mechanisms/) — the other sub-layer layer norm wraps

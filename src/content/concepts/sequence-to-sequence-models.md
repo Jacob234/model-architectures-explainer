@@ -8,7 +8,7 @@ sources:
     url: "https://arxiv.org/abs/1706.03762"
 ---
 
-An encoder–decoder (or seq2seq) model splits the work of reading and writing between two separate networks. The [encoder](/concepts/encoder/) processes the full input at once and produces a contextual representation. The [decoder](/concepts/decoder/) then generates the output one token at a time, attending to the encoder's representation at every step via cross-attention. This architecture handles variable-length inputs and outputs naturally — a 5-word source sentence can produce a 12-word translation — and it was the design that drove machine translation, summarization, and dialogue from the mid-2010s onward.
+An encoder–decoder (or seq2seq) model splits the work of reading and writing between two separate networks. The [encoder](../encoder/) processes the full input at once and produces a contextual representation. The [decoder](../decoder/) then generates the output one token at a time, attending to the encoder's representation at every step via cross-attention. This architecture handles variable-length inputs and outputs naturally — a 5-word source sentence can produce a 12-word translation — and it was the design that drove machine translation, summarization, and dialogue from the mid-2010s onward.
 
 ## How it works
 
@@ -18,7 +18,7 @@ The training objective is not fixed and varies by use case. Translation systems 
 
 ## Why the explicit split matters
 
-Decoder-only [large language models](/concepts/large-language-models/) dropped the encoder entirely — they process prompt and response as a single autoregressive sequence. This simplification works at scale because a large enough decoder stack can implicitly encode an input while also generating an output. But the encoder–decoder wiring is not obsolete: it remains the natural fit for translation-style tasks, produces stronger cross-lingual representations, and is easier to condition on structured inputs (code, tables) through the cross-attention interface.
+Decoder-only [large language models](../large-language-models/) dropped the encoder entirely — they process prompt and response as a single autoregressive sequence. This simplification works at scale because a large enough decoder stack can implicitly encode an input while also generating an output. But the encoder–decoder wiring is not obsolete: it remains the natural fit for translation-style tasks, produces stronger cross-lingual representations, and is easier to condition on structured inputs (code, tables) through the cross-attention interface.
 
 ## Where you'll see it
 
@@ -26,9 +26,9 @@ T5 and BART are the dominant pretrained encoder–decoder models; Flan-T5 and mT
 
 ## Related concepts
 
-- [encoder](/concepts/encoder/) — the reading half; processes source input bidirectionally
-- [decoder](/concepts/decoder/) — the generating half; autoregressive, cross-attends to encoder output
-- [attention mechanisms](/concepts/attention-mechanisms/) — cross-attention is the glue between the two halves
-- [large language models](/concepts/large-language-models/) — the decoder-only simplification of this architecture
-- [recurrent neural networks](/concepts/recurrent-neural-networks/) — the original seq2seq implementation before transformers
-- [bert](/concepts/bert/) — the encoder-only endpoint: drop the decoder entirely
+- [encoder](../encoder/) — the reading half; processes source input bidirectionally
+- [decoder](../decoder/) — the generating half; autoregressive, cross-attends to encoder output
+- [attention mechanisms](../attention-mechanisms/) — cross-attention is the glue between the two halves
+- [large language models](../large-language-models/) — the decoder-only simplification of this architecture
+- [recurrent neural networks](../recurrent-neural-networks/) — the original seq2seq implementation before transformers
+- [bert](../bert/) — the encoder-only endpoint: drop the decoder entirely

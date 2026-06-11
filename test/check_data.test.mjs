@@ -73,3 +73,34 @@ test('duplicate id within a collection -> error', () => {
   const d = base(); d.primitives.push({ ...d.primitives[0] });
   assert.match(validate(d, files).join('\n'), /primitives: duplicate id "attention"/);
 });
+
+// --- body-link lint ---
+import { validateBodyLinks } from '../scripts/check_data.mjs';
+
+const slugs = new Set(['bert', 'encoder']);
+
+test('relative links to existing pages + external/hash links -> no errors', () => {
+  const pages = { 'bert.md': 'See the [encoder](../encoder/), [paper](https://arxiv.org/abs/1810.04805), [below](#how-it-works).' };
+  assert.deepEqual(validateBodyLinks(pages, slugs), []);
+});
+
+test('absolute internal link -> error (bypasses base path)', () => {
+  const pages = { 'bert.md': 'See the [encoder](/concepts/encoder/).' };
+  const errors = validateBodyLinks(pages, slugs);
+  assert.equal(errors.length, 1);
+  assert.match(errors[0], /absolute internal link/);
+});
+
+test('relative link to missing page -> error (dangling)', () => {
+  const pages = { 'bert.md': 'See [tokenizers](../tokenization/).' };
+  const errors = validateBodyLinks(pages, slugs);
+  assert.equal(errors.length, 1);
+  assert.match(errors[0], /missing concept page "tokenization"/);
+});
+
+test('unrecognized internal link shape -> error', () => {
+  const pages = { 'bert.md': 'See [x](./weird/path).' };
+  const errors = validateBodyLinks(pages, slugs);
+  assert.equal(errors.length, 1);
+  assert.match(errors[0], /unrecognized internal link/);
+});

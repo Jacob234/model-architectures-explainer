@@ -17,7 +17,7 @@ The skip connection adds the input back to the output. This has two critical eff
 
 **Identity as default.** When F(x) ≈ 0, the layer output is just the input unchanged. Each layer only needs to learn *what to add* to the existing representation, not a complete transformation from scratch. Starting from "do nothing" is much easier to optimize than learning a full mapping.
 
-**In transformers**, every sub-layer — both [attention mechanisms](/concepts/attention-mechanisms/) and [feed-forward networks](/concepts/feed-forward-networks/) — is wrapped in a residual connection, paired with [layer normalization](/concepts/layer-normalization/):
+**In transformers**, every sub-layer — both [attention mechanisms](../attention-mechanisms/) and [feed-forward networks](../feed-forward-networks/) — is wrapped in a residual connection, paired with [layer normalization](../layer-normalization/):
 
 ```
 output = x + Sublayer(LayerNorm(x))   # pre-norm, modern standard
@@ -29,11 +29,11 @@ This pre-norm variant applies normalization *before* the sub-layer so the residu
 
 ## Where you'll see it
 
-Residual connections appear in every modern deep architecture. In [encoders](/concepts/encoder/) and [decoders](/concepts/decoder/), every block has two residual-wrapped sub-layers. [Vision Transformers](/concepts/vision-transformer/) apply the same pattern over image patches. Diffusion architectures use them too, through the [diffusion transformer](/concepts/diffusion-transformer/) design.
+Residual connections appear in every modern deep architecture. In [encoders](../encoder/) and [decoders](../decoder/), every block has two residual-wrapped sub-layers. [Vision Transformers](../vision-transformer/) apply the same pattern over image patches. Diffusion architectures use them too, through the [diffusion transformer](../diffusion-transformer/) design.
 
 ## Related concepts
 
-- [layer normalization](/concepts/layer-normalization/) — always paired with residual connections; together they make deep stacks trainable
-- [attention mechanisms](/concepts/attention-mechanisms/) — one of the sub-layers wrapped in a residual connection
-- [feed-forward networks](/concepts/feed-forward-networks/) — the other sub-layer, reading from and writing to the residual stream
-- [encoder](/concepts/encoder/) — uses residual connections at every block
+- [layer normalization](../layer-normalization/) — always paired with residual connections; together they make deep stacks trainable
+- [attention mechanisms](../attention-mechanisms/) — one of the sub-layers wrapped in a residual connection
+- [feed-forward networks](../feed-forward-networks/) — the other sub-layer, reading from and writing to the residual stream
+- [encoder](../encoder/) — uses residual connections at every block

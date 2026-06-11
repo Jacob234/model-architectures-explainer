@@ -7,7 +7,7 @@ sources:
     url: "https://arxiv.org/abs/2305.13245"
 ---
 
-Attention head sharing is a modifier on the [attention mechanisms](/concepts/attention-mechanisms/) sublayer, not a separate architecture family. Standard multi-head attention (MHA) gives every query head its own key and value projections — maximum expressiveness, but maximum memory during generation. At inference, these projections are cached for every past token (the KV cache), growing proportionally with context length and batch size. Head sharing reduces that cache by reusing key/value projections across multiple query heads.
+Attention head sharing is a modifier on the [attention mechanisms](../attention-mechanisms/) sublayer, not a separate architecture family. Standard multi-head attention (MHA) gives every query head its own key and value projections — maximum expressiveness, but maximum memory during generation. At inference, these projections are cached for every past token (the KV cache), growing proportionally with context length and batch size. Head sharing reduces that cache by reusing key/value projections across multiple query heads.
 
 ## How it works
 
@@ -23,10 +23,10 @@ The intuition: diversity among *query* heads matters more than diversity among *
 
 ## Where you'll see it
 
-GQA is the default in virtually every [large language model](/concepts/large-language-models/) released since 2023. MLA is the frontier variant, used by DeepSeek-V2/V3 alongside [Mixture of Experts](/concepts/mixture-of-experts/) — MoE reduces computation, MLA reduces memory, the two addressing complementary bottlenecks.
+GQA is the default in virtually every [large language model](../large-language-models/) released since 2023. MLA is the frontier variant, used by DeepSeek-V2/V3 alongside [Mixture of Experts](../mixture-of-experts/) — MoE reduces computation, MLA reduces memory, the two addressing complementary bottlenecks.
 
 ## Related concepts
 
-- [attention mechanisms](/concepts/attention-mechanisms/) — the sublayer this modifier applies to
-- [mixture-of-experts](/concepts/mixture-of-experts/) — a complementary modifier: MoE applies to the feed-forward sublayer
-- [large language models](/concepts/large-language-models/) — GQA is the default for production LLMs
+- [attention mechanisms](../attention-mechanisms/) — the sublayer this modifier applies to
+- [mixture-of-experts](../mixture-of-experts/) — a complementary modifier: MoE applies to the feed-forward sublayer
+- [large language models](../large-language-models/) — GQA is the default for production LLMs

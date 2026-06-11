@@ -19,17 +19,17 @@ A single convolutional layer applies many filters in parallel (32, 64, 128 chann
 
 The CNN architecture emerged from this primitive stacked into deep networks, with each generation of landmark models solving a specific training problem:
 
-**LeNet (1998)** was the proof of concept — convolutional layers for digit recognition. **AlexNet (2012)** scaled to ImageNet and won by a large margin, launching the deep learning era; it established ReLU activations and GPU training as standard. **ResNet (2015)** solved the depth problem: very deep networks degraded in practice because gradients vanished during backpropagation. ResNet added [residual connections](/concepts/residual-connections/) — skip connections that add a layer's input directly to its output — letting gradients flow through hundreds of layers. Residual connections became foundational to the entire field, including transformers. **EfficientNet (2019)** introduced principled compound scaling of width, depth, and resolution together, achieving better accuracy at lower compute than prior manual designs.
+**LeNet (1998)** was the proof of concept — convolutional layers for digit recognition. **AlexNet (2012)** scaled to ImageNet and won by a large margin, launching the deep learning era; it established ReLU activations and GPU training as standard. **ResNet (2015)** solved the depth problem: very deep networks degraded in practice because gradients vanished during backpropagation. ResNet added [residual connections](../residual-connections/) — skip connections that add a layer's input directly to its output — letting gradients flow through hundreds of layers. Residual connections became foundational to the entire field, including transformers. **EfficientNet (2019)** introduced principled compound scaling of width, depth, and resolution together, achieving better accuracy at lower compute than prior manual designs.
 
 ## The objective is not fixed
 
-Like the [Vision Transformer](/concepts/vision-transformer/), a CNN is a backbone — the training objective is separate from the architecture. ResNet can be trained for supervised image classification, for contrastive self-supervised learning (SimCLR), or as the visual encoder in a generative model. CNNs also remain the standard denoiser backbone (U-Net) inside diffusion models, where the generative objective is entirely different from classification.
+Like the [Vision Transformer](../vision-transformer/), a CNN is a backbone — the training objective is separate from the architecture. ResNet can be trained for supervised image classification, for contrastive self-supervised learning (SimCLR), or as the visual encoder in a generative model. CNNs also remain the standard denoiser backbone (U-Net) inside diffusion models, where the generative objective is entirely different from classification.
 
 CNNs have strong built-in inductive biases — locality and translation invariance — that make them data-efficient. ViT lacks these priors and requires large-scale pretraining to match CNN performance. Many modern architectures are hybrids that combine convolutional feature extraction with transformer attention.
 
 ## Related concepts
 
-- [vision-transformer](/concepts/vision-transformer/) — the attention-based challenger; stronger at scale, weaker on small datasets
-- [residual-connections](/concepts/residual-connections/) — originated in ResNet; now standard across deep learning
-- [diffusion-models](/concepts/diffusion-models/) — the U-Net denoiser at their core is a convolutional architecture
-- [embeddings](/concepts/embeddings/) — CNN feature maps are spatial embeddings; the final pooled vector is a global image embedding
+- [vision-transformer](../vision-transformer/) — the attention-based challenger; stronger at scale, weaker on small datasets
+- [residual-connections](../residual-connections/) — originated in ResNet; now standard across deep learning
+- [diffusion-models](../diffusion-models/) — the U-Net denoiser at their core is a convolutional architecture
+- [embeddings](../embeddings/) — CNN feature maps are spatial embeddings; the final pooled vector is a global image embedding

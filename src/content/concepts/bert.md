@@ -12,11 +12,11 @@ BERT — Bidirectional Encoder Representations from Transformers — made the op
 
 ## How it works
 
-BERT is an [encoder](/concepts/encoder/)-only transformer — no decoder, no causal mask. Every token attends to every other token in both directions. The base model has 12 layers and 110 million parameters; the large variant has 24 layers and 340 million.
+BERT is an [encoder](../encoder/)-only transformer — no decoder, no causal mask. Every token attends to every other token in both directions. The base model has 12 layers and 110 million parameters; the large variant has 24 layers and 340 million.
 
 Pretraining uses two objectives. The first, masked language modeling, randomly masks 15% of tokens and trains the model to predict the originals from surrounding context. The second, next-sentence prediction, asks whether two passages appear consecutively — though later work (RoBERTa) showed this objective hurts more than it helps and dropped it.
 
-Fine-tuning is intentionally simple: add a thin task-specific [output head](/concepts/output-head/) on top of the pretrained encoder and train the whole stack. For classification, the [CLS] token's final representation feeds a linear classifier. For span extraction (question answering), position classifiers run over every token. For token-level tasks like named-entity recognition, per-token classifiers apply directly. No architecture changes are needed across tasks — the same pretrained encoder serves all of them.
+Fine-tuning is intentionally simple: add a thin task-specific [output head](../output-head/) on top of the pretrained encoder and train the whole stack. For classification, the [CLS] token's final representation feeds a linear classifier. For span extraction (question answering), position classifiers run over every token. For token-level tasks like named-entity recognition, per-token classifiers apply directly. No architecture changes are needed across tasks — the same pretrained encoder serves all of them.
 
 ## Variants
 
@@ -24,11 +24,11 @@ BERT's design spawned a productive family. RoBERTa showed BERT was significantly
 
 ## Where you'll see it
 
-BERT-family models underpin most production search, classification, and embedding pipelines today. They power semantic search (sentence-transformers turn BERT outputs into dense retrieval vectors), reranking stages in retrieval-augmented systems, and document classification at scale. BERT lost the race to build generative [large language models](/concepts/large-language-models/) — bidirectional encoders cannot generate text autoregressively — but they remain the practical default wherever understanding, not generation, is the task.
+BERT-family models underpin most production search, classification, and embedding pipelines today. They power semantic search (sentence-transformers turn BERT outputs into dense retrieval vectors), reranking stages in retrieval-augmented systems, and document classification at scale. BERT lost the race to build generative [large language models](../large-language-models/) — bidirectional encoders cannot generate text autoregressively — but they remain the practical default wherever understanding, not generation, is the task.
 
 ## Related concepts
 
-- [encoder](/concepts/encoder/) — the bidirectional module BERT is built from
-- [attention mechanisms](/concepts/attention-mechanisms/) — the core operation; bidirectional, so every token sees every other
-- [embeddings](/concepts/embeddings/) — BERT produces contextual embeddings; sentence-BERT adapts them for dense retrieval
-- [large language models](/concepts/large-language-models/) — the decoder-only alternative that won the generative race
+- [encoder](../encoder/) — the bidirectional module BERT is built from
+- [attention mechanisms](../attention-mechanisms/) — the core operation; bidirectional, so every token sees every other
+- [embeddings](../embeddings/) — BERT produces contextual embeddings; sentence-BERT adapts them for dense retrieval
+- [large language models](../large-language-models/) — the decoder-only alternative that won the generative race

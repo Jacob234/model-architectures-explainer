@@ -33,17 +33,17 @@ Before transformers, stacked bidirectional LSTMs were the default architecture f
 
 ## The objective is not fixed
 
-Like [convolutional neural networks](/concepts/convolutional-neural-networks/), an RNN is a backbone. The same recurrent cell can be used for autoregressive language modeling (predict the next token), sequence classification (read a sentence, classify at the final hidden state), or sequence-to-sequence transduction inside an [encoder–decoder](/concepts/sequence-to-sequence-models/) model. The objective is separate from the recurrent mechanism.
+Like [convolutional neural networks](../convolutional-neural-networks/), an RNN is a backbone. The same recurrent cell can be used for autoregressive language modeling (predict the next token), sequence classification (read a sentence, classify at the final hidden state), or sequence-to-sequence transduction inside an [encoder–decoder](../sequence-to-sequence-models/) model. The objective is separate from the recurrent mechanism.
 
 ## Why transformers replaced RNNs
 
-The core limitation is sequential computation. `hₜ` depends on `hₜ₋₁`, so timesteps cannot be parallelized — training is O(sequence length) in serial wall-clock time. [Attention mechanisms](/concepts/attention-mechanisms/) were first introduced as an add-on to RNN-based translation models (Bahdanau et al., 2014), letting the decoder look at all encoder hidden states rather than relying on a single compressed vector. Once attention did the heavy lifting, the recurrence became redundant. The transformer dropped the recurrence entirely and computed all positions in parallel, unlocking the GPU utilization that enabled scaling to modern model sizes.
+The core limitation is sequential computation. `hₜ` depends on `hₜ₋₁`, so timesteps cannot be parallelized — training is O(sequence length) in serial wall-clock time. [Attention mechanisms](../attention-mechanisms/) were first introduced as an add-on to RNN-based translation models (Bahdanau et al., 2014), letting the decoder look at all encoder hidden states rather than relying on a single compressed vector. Once attention did the heavy lifting, the recurrence became redundant. The transformer dropped the recurrence entirely and computed all positions in parallel, unlocking the GPU utilization that enabled scaling to modern model sizes.
 
-The conceptual lineage lives on: [state-space models](/concepts/state-space-models/) like Mamba recover the linear-inference efficiency of recurrence while remaining trainable in parallel — a modern reinvention of the RNN's core appeal.
+The conceptual lineage lives on: [state-space models](../state-space-models/) like Mamba recover the linear-inference efficiency of recurrence while remaining trainable in parallel — a modern reinvention of the RNN's core appeal.
 
 ## Related concepts
 
-- [sequence-to-sequence models](/concepts/sequence-to-sequence-models/) — the encoder–decoder framework first built with stacked RNNs
-- [attention mechanisms](/concepts/attention-mechanisms/) — invented as an add-on to RNN seq2seq; later replaced recurrence entirely
-- [state-space models](/concepts/state-space-models/) — modern parallel-trainable recurrence; the RNN's conceptual successor
-- [large-language-models](/concepts/large-language-models/) — decoder-only transformers: the architecture that obsoleted RNNs for language
+- [sequence-to-sequence models](../sequence-to-sequence-models/) — the encoder–decoder framework first built with stacked RNNs
+- [attention mechanisms](../attention-mechanisms/) — invented as an add-on to RNN seq2seq; later replaced recurrence entirely
+- [state-space models](../state-space-models/) — modern parallel-trainable recurrence; the RNN's conceptual successor
+- [large-language-models](../large-language-models/) — decoder-only transformers: the architecture that obsoleted RNNs for language

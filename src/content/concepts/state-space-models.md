@@ -7,7 +7,7 @@ summary: Replaces attention with a selective state-space scan — recurrent memo
 
 State space models bring a tool from classical control theory — the linear
 dynamical system — into deep learning as a sequence-modeling primitive. Where
-[attention mechanisms](/concepts/attention-mechanisms/) compute pairwise
+[attention mechanisms](../attention-mechanisms/) compute pairwise
 relationships between every pair of positions (quadratic cost in sequence
 length), an SSM maintains a fixed-size hidden state updated as each token
 arrives, keeping processing linear in sequence length. The family was revived
@@ -40,14 +40,14 @@ flexibility: the model can't decide what to remember based on what it's reading.
 Mamba (Gu & Dao, 2023) solved this by making SSM parameters **input-dependent**:
 the B and C matrices and discretization step Δ are functions of the current
 input, so the model can selectively retain or discard information based on
-content — a form of learned [gating](/concepts/expert-routing/). A
+content — a form of learned [gating](../expert-routing/). A
 hardware-aware parallel scan avoids materializing the full state in GPU memory,
 achieving 3–5× faster inference than equivalently-sized transformers.
 Mamba-2 (2024) showed selective state spaces are mathematically equivalent to
 a form of structured attention, unifying the two perspectives.
 
 **Hybrid architectures** interleave Mamba layers with transformer
-[attention](/concepts/attention-mechanisms/) layers: SSM layers handle long-range
+[attention](../attention-mechanisms/) layers: SSM layers handle long-range
 context efficiently; attention layers handle precise token retrieval. This hybrid
 pattern is becoming the practical standard for models needing both efficiency
 and capability.
@@ -57,7 +57,7 @@ and capability.
 SSMs are a **backbone** — the training objective is not fixed. In practice:
 
 - **Autoregressive language modeling** — Mamba and hybrid Mamba-Transformer
-  models are the main SSM-based [LLM](/concepts/large-language-models/) line.
+  models are the main SSM-based [LLM](../large-language-models/) line.
 - **Long-context tasks** — SSMs maintain constant memory per inference step
   where transformer KV caches grow linearly.
 - **Scientific sequences** — genomics models (HyenaDNA, Evo) use SSM
@@ -65,8 +65,8 @@ SSMs are a **backbone** — the training objective is not fixed. In practice:
 
 ## Related concepts
 
-- [attention-mechanisms](/concepts/attention-mechanisms/) — the operation SSMs replace; Mamba-2 shows the two are mathematically related
-- [recurrent-neural-networks](/concepts/recurrent-neural-networks/) — SSMs are RNNs with structured dynamics chosen for trainability and parallelism
-- [expert-routing](/concepts/expert-routing/) — Mamba's input-dependent selectivity is a form of learned gating
-- [large-language-models](/concepts/large-language-models/) — Mamba-based hybrids are the SSM LLM line
-- [world-models](/concepts/world-models/) — hybrid Mamba-Transformer backbones appear in video-length world model training
+- [attention-mechanisms](../attention-mechanisms/) — the operation SSMs replace; Mamba-2 shows the two are mathematically related
+- [recurrent-neural-networks](../recurrent-neural-networks/) — SSMs are RNNs with structured dynamics chosen for trainability and parallelism
+- [expert-routing](../expert-routing/) — Mamba's input-dependent selectivity is a form of learned gating
+- [large-language-models](../large-language-models/) — Mamba-based hybrids are the SSM LLM line
+- [world-models](../world-models/) — hybrid Mamba-Transformer backbones appear in video-length world model training

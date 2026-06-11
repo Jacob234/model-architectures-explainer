@@ -23,15 +23,15 @@ The original transformer used ReLU as the nonlinearity. Modern large language mo
 
 **The key-value memory view.** Interpretability research recasts the FFN as an associative memory: the first matrix's rows detect patterns in the input, and the second matrix's columns write information back when those patterns fire. This is why factual edits (e.g., ROME) target FFN weights: the knowledge is encoded there.
 
-Like every other transformer sub-layer, the FFN is wrapped in [residual connections](/concepts/residual-connections/) and paired with [layer normalization](/concepts/layer-normalization/), so it adds to the existing representation rather than replacing it.
+Like every other transformer sub-layer, the FFN is wrapped in [residual connections](../residual-connections/) and paired with [layer normalization](../layer-normalization/), so it adds to the existing representation rather than replacing it.
 
 ## Where you'll see it
 
-The FFN appears in every [encoder](/concepts/encoder/) and [decoder](/concepts/decoder/) block. Because it dominates the parameter count, it is the natural target for sparsity: in [Mixture of Experts](/concepts/mixture-of-experts/) models, the single dense FFN is replaced by many parallel expert FFNs, with a router selecting only a few per token. This is how MoE models like Mixtral and DeepSeek scale parameters while keeping per-token compute fixed.
+The FFN appears in every [encoder](../encoder/) and [decoder](../decoder/) block. Because it dominates the parameter count, it is the natural target for sparsity: in [Mixture of Experts](../mixture-of-experts/) models, the single dense FFN is replaced by many parallel expert FFNs, with a router selecting only a few per token. This is how MoE models like Mixtral and DeepSeek scale parameters while keeping per-token compute fixed.
 
 ## Related concepts
 
-- [attention mechanisms](/concepts/attention-mechanisms/) — the cross-position sub-layer the FFN alternates with
-- [residual connections](/concepts/residual-connections/) — the skip connection the FFN reads from and writes to
-- [layer normalization](/concepts/layer-normalization/) — normalization paired with the FFN at each block
-- [mixture of experts](/concepts/mixture-of-experts/) — replaces this layer with many routed expert FFNs
+- [attention mechanisms](../attention-mechanisms/) — the cross-position sub-layer the FFN alternates with
+- [residual connections](../residual-connections/) — the skip connection the FFN reads from and writes to
+- [layer normalization](../layer-normalization/) — normalization paired with the FFN at each block
+- [mixture of experts](../mixture-of-experts/) — replaces this layer with many routed expert FFNs

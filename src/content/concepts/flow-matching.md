@@ -5,9 +5,9 @@ kind: generative-framework
 summary: A generative training objective that learns a velocity field transporting noise to data along straight paths — fewer sampling steps than diffusion, same backbone architectures (SD3, Flux).
 ---
 
-[Diffusion models](/concepts/diffusion-models/) generate images by reversing a noising process across hundreds of small steps. Flow matching is a closely related — and in many formulations more general — alternative: instead of learning to denoise step by step, it trains a network to regress the **velocity field** that, if you follow it as an ordinary differential equation, carries a noise sample directly to a data sample. Because the learned paths are straighter, accurate samples typically need far fewer integration steps at generation time.
+[Diffusion models](../diffusion-models/) generate images by reversing a noising process across hundreds of small steps. Flow matching is a closely related — and in many formulations more general — alternative: instead of learning to denoise step by step, it trains a network to regress the **velocity field** that, if you follow it as an ordinary differential equation, carries a noise sample directly to a data sample. Because the learned paths are straighter, accurate samples typically need far fewer integration steps at generation time.
 
-Flow matching is the training objective behind Stable Diffusion 3 and Flux, where it is paired with a [diffusion transformer](/concepts/diffusion-transformer/) as the backbone network.
+Flow matching is the training objective behind Stable Diffusion 3 and Flux, where it is paired with a [diffusion transformer](../diffusion-transformer/) as the backbone network.
 
 ## How it works
 
@@ -21,7 +21,7 @@ Flow matching is the training objective behind Stable Diffusion 3 and Flux, wher
 
 ## Relation to diffusion
 
-Diffusion's score-based reverse process has an equivalent deterministic probability-flow ODE. Flow matching can be understood as directly learning that ODE's velocity field, sidestepping the noise-schedule machinery. The two paradigms share backbone architectures — U-Net or [DiT](/concepts/diffusion-transformer/) — and differ in how they define the training target.
+Diffusion's score-based reverse process has an equivalent deterministic probability-flow ODE. Flow matching can be understood as directly learning that ODE's velocity field, sidestepping the noise-schedule machinery. The two paradigms share backbone architectures — U-Net or [DiT](../diffusion-transformer/) — and differ in how they define the training target.
 
 ## Where you'll see it
 
@@ -29,5 +29,5 @@ Flow matching is the loss function behind the current frontier of image and vide
 
 ## Related concepts
 
-- [diffusion models](/concepts/diffusion-models/) — the closest relative; flow matching reframes diffusion's noise→data transport as a learned velocity field
-- [diffusion transformer](/concepts/diffusion-transformer/) — the network architecture flow matching is typically paired with
+- [diffusion models](../diffusion-models/) — the closest relative; flow matching reframes diffusion's noise→data transport as a learned velocity field
+- [diffusion transformer](../diffusion-transformer/) — the network architecture flow matching is typically paired with

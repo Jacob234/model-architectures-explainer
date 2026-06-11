@@ -11,7 +11,7 @@ sources:
 
 Attention lets a neural network focus on the most relevant parts of its input
 when producing each part of its output. It replaces the step-by-step processing
-of [recurrent networks](/concepts/recurrent-neural-networks/) with a mechanism
+of [recurrent networks](../recurrent-neural-networks/) with a mechanism
 that directly connects any two positions in a sequence — in parallel, in a
 single operation.
 
@@ -26,31 +26,31 @@ rest of the sequence. **Multi-head** attention runs this many times in parallel
 with different learned projections, so different heads can track different
 relationships — syntax, meaning, proximity. Because the operation itself is
 order-blind, it is paired with
-[positional encoding](/concepts/positional-encoding/) to restore word order.
+[positional encoding](../positional-encoding/) to restore word order.
 
 Attention comes in three flavors. **Self-attention** lets a sequence attend to
 itself — every position to every other — and powers the
-[encoder](/concepts/encoder/). **Masked self-attention** restricts each
+[encoder](../encoder/). **Masked self-attention** restricts each
 position to what came before it, enforcing the left-to-right generation of the
-[decoder](/concepts/decoder/). **Cross-attention** lets a decoder read an
+[decoder](../decoder/). **Cross-attention** lets a decoder read an
 encoder's output — the original 2014 form, invented to fix the bottleneck in
-[sequence-to-sequence models](/concepts/sequence-to-sequence-models/) that
+[sequence-to-sequence models](../sequence-to-sequence-models/) that
 squeezed a whole input into one fixed-size vector.
 
 ## Where you'll see it
 
 Everywhere. Scaled-up attention across many layers is what gives
-[large language models](/concepts/large-language-models/) their capabilities;
-a [Vision Transformer](/concepts/vision-transformer/) applies it to image
+[large language models](../large-language-models/) their capabilities;
+a [Vision Transformer](../vision-transformer/) applies it to image
 patches. Its main cost is memory — every position interacting with every other
 — which drives variants like
-[attention head sharing](/concepts/attention-head-sharing/) and motivates
+[attention head sharing](../attention-head-sharing/) and motivates
 attention-free challengers like
-[state space models](/concepts/state-space-models/).
+[state space models](../state-space-models/).
 
 ## Related concepts
 
-- [encoder](/concepts/encoder/) / [decoder](/concepts/decoder/) — the modules built around it
-- [positional encoding](/concepts/positional-encoding/) — restores the order attention can't see
-- [attention head sharing](/concepts/attention-head-sharing/) — the memory-saving variant family
-- [state space models](/concepts/state-space-models/) — the sub-quadratic alternative
+- [encoder](../encoder/) / [decoder](../decoder/) — the modules built around it
+- [positional encoding](../positional-encoding/) — restores the order attention can't see
+- [attention head sharing](../attention-head-sharing/) — the memory-saving variant family
+- [state space models](../state-space-models/) — the sub-quadratic alternative
