@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import RecipeBuilder from '../components/RecipeBuilder.svelte';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="Recipe Builder — Model Architectures"
+  description="Compose modules and a training objective; see which model families match.">
+  <main class="builder-page">
+    <h1>Recipe builder</h1>
+    <p>
+      Every family on the <a href={`${base}/`}>map</a> is a recipe:
+      <strong>modules + a training objective</strong>. Pick parts and see what
+      you've built — recipes that match several families are the interesting ones.
+    </p>
+    <RecipeBuilder client:load />
+    <noscript><p>The builder needs JavaScript — explore the <a href={`${base}/`}>map</a> instead.</p></noscript>
+  </main>
+</Base>
+
+<style>
+  .builder-page { max-width: 760px; margin: 0 auto; padding: 24px 20px 64px; }
+</style>
