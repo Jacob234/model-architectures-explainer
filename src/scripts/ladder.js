@@ -120,6 +120,17 @@ import data from '../data/explainer.json';
   function renderDetail() {
     const panel = document.getElementById('detail');
     if (!state.sel) {
+      // An active legend filter gets the detail panel too — objectives have no
+      // map node of their own, so this is their only visible (non-tooltip) text.
+      if (state.objFilter) {
+        const o = O[state.objFilter];
+        const fams = data.families.filter(f => f.objective === o.id);
+        panel.innerHTML = `<p class="detail-type">objective</p><h2>${o.name}</h2>` +
+          `<p class="blurb">${o.blurb}</p>` +
+          `<h3>Families trained with it</h3>` +
+          `<p class="prims-line">${fams.map(f => `<b>${f.name}</b>`).join(' · ')}</p>`;
+        return;
+      }
       panel.innerHTML = document.getElementById('detail-intro').innerHTML;
       return;
     }
@@ -139,6 +150,13 @@ import data from '../data/explainer.json';
       html += `<h3>Recipe</h3><p class="recipe">${mods || `<span class="chip">primitives, wired directly</span>`}<span class="plus">+</span>${obj}</p>`;
       html += `<h3>Uses primitives</h3><p class="prims-line">${[...famPrims(item)].map(p => `<b>${P[p].name}</b>`).join(' · ')}</p>`;
       if (item.variants) html += `<div class="caveat">⚠ ${item.variants}</div>`;
+    }
+    // Say the highlight-only relationships in words too (touch / screen readers).
+    if (type === 'module' && (item.primitives || []).length) {
+      html += `<h3>Made of</h3><p class="prims-line">${item.primitives.map(p => `<b>${P[p].name}</b>`).join(' · ')}</p>`;
+    }
+    if (type === 'primitive' && (item.modifiedBy || []).length) {
+      html += `<h3>Modified by</h3><p class="prims-line">${item.modifiedBy.map(x => `<b>${X[x].name}</b>`).join(' · ')}</p>`;
     }
     if (type === 'module' && item.variants) {
       html += `<h3>Variants</h3><ul>` + item.variants.map(v =>

@@ -77,6 +77,9 @@
         style={`--obj: ${o.color}`} title={o.blurb} onclick={() => setObjective(o.id)}>{o.name}</button>
     {/each}
   </div>
+  {#if objective}
+    <p class="obj-blurb">{objectiveDefs.find((d) => d.id === objective)?.blurb}</p>
+  {/if}
 </section>
 
 <section class="results" aria-live="polite" aria-label="Matching families">
@@ -143,6 +146,7 @@
   .why { color: var(--muted, #9aa3ad); }
   .hint { color: var(--muted, #9aa3ad); font-style: italic; }
   .muted { color: var(--muted, #9aa3ad); }
+  .obj-blurb { color: var(--muted, #9aa3ad); font-size: 13.5px; margin: 8px 0 0; max-width: 60ch; }
   .explore-note { border: 1px dashed var(--edge); border-radius: 8px; padding: 8px 12px;
     color: var(--muted, #9aa3ad); }
 </style>
