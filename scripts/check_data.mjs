@@ -119,7 +119,9 @@ export function validateSources({ pages, candidates, conceptSlugs }) {
     if (conceptSlugs.has(c.id)) {
       errors.push(`candidate "${c.id}" collides with an existing concept slug — move its sources to frontmatter and delete the entry`);
     }
-    if (!['primitive', 'module', 'modifier', 'family'].includes(c.tier)) {
+    // 'objective' is queue-only: objectives have no slug field yet, so the
+    // collision check can't fire for them until pages actually get written.
+    if (!['primitive', 'module', 'modifier', 'family', 'objective'].includes(c.tier)) {
       errors.push(`candidate "${c.id}": unknown tier "${c.tier}"`);
     }
     if (!Array.isArray(c.sources)) errors.push(`candidate "${c.id}": sources must be an array`);

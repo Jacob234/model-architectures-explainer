@@ -97,3 +97,9 @@ test('candidate with bad tier or non-array sources -> error', () => {
   assert.match(errors.join('\n'), /unknown tier "mega"/);
   assert.match(errors.join('\n'), /sources must be an array/);
 });
+
+test('candidate with objective tier is accepted (objectives batch, inventory decision 2b)', () => {
+  const c = candidate(); c.tier = 'objective'; c.id = 'flow-matching-objective';
+  const errors = validateSources({ pages: {}, candidates: [c], conceptSlugs: slugs });
+  assert.deepEqual(errors, []);
+});
