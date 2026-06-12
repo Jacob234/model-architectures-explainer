@@ -5,8 +5,8 @@
 and the four UI surfaces (map, concept pages, /sources/, /builder/) — cross-referenced
 to find (a) gaps in coverage and (b) data that exists but is hidden or under-surfaced.
 
-> **Pending**: the user's attached materials were not available this session.
-> Section 5 reserves a slot; re-run the gap analysis once they're added.
+> **Clarified**: the "attached materials" are the site's *outward links* — the
+> external sources the site delegates coverage to. Analyzed in §5.
 
 ---
 
@@ -104,11 +104,26 @@ interactives already catalogued in frontmatter that the map never links.
 
 **G7. No CI for check:links** (inherited; still manual-only).
 
-## 5. Attached materials — pending
+## 5. The external link layer — what the site delegates
 
-Reserved. When the user supplies their materials, add each item as a matrix row:
-does the site cover it (where), partially cover it, or not at all — then merge
-the resulting gaps into §4 and re-rank §6.
+The site's philosophy is to link out rather than rebuild: external interactives
+*replace* homegrown ones. So the 147 outward links are part of the content
+stock — coverage the site owns by reference.
+
+- **Type mix**: 69 paper · 48 blog · 21 explainer · 9 video. Every page has ≥1
+  source; papers anchor provenance, blogs/videos carry the teaching load.
+- **Interactive coverage**: **17 of 40 pages** have at least one explainer-type
+  (interactive) source — but only **4** are promoted to a map `deepDive` button
+  (llm, cnn, diffusion, gan). The other 13 (attention, autoencoders, clip, DiT,
+  energy-based, gnn, output-head, seq2seq, ssm, tokenization, transformer-block,
+  vae, world-models) have map-worthy interactives the map never shows → directly
+  feeds **G6/S6**.
+- **23 pages have no interactive source** — these are where a homegrown
+  interactive would not be displacing anything (relevant when weighing future
+  islands), and where explainer-hunting for the source directory has headroom.
+- The /sources/ build enforces deepDive ⊆ page sources, so the map and the
+  directory cannot disagree about a canonical explainer — but nothing flags the
+  reverse direction (an explainer source that *should* become a deepDive).
 
 ## 6. Surfacing proposals — hidden data, ranked
 
@@ -154,15 +169,39 @@ they match, or single-source one from the other.
 already computes "one edit away"; a static "neighbors: swap objective → MAE"
 line per family page would reuse `recipe-match.js` at build time.
 
-### Suggested order
+### Suggested order (updated with §7 decisions)
 
-S7 (fix) → S1+S2+S3 (one pages-template pass) → S5 (map detail pass) →
-S4/G3 (objectives, needs design) → G1/G2/G4 (new content, third ring) → S6, S8, S9.
+1. S7 (Locator fix) + S1+S2+S3 in one pages-template pass (S2 per decision 1).
+2. S5 (map detail textual pass) + S4a (visible objective blurbs, decision 2a).
+3. Populate candidates.json with the three decided batches (decision 4) —
+   includes extending the candidates lint with an `objective` tier.
+4. S6 (interactive-exists tag beyond /sources/, fed by §5's 13-page list).
+5. Then page-writing waves: page-debt modules → training-efficiency →
+   objective pages (decision 2b, schema change). S8 resolved (no code); S9 later.
 
-## 7. Open decisions for the user
+## 7. Decisions (resolved 2026-06-11)
 
-1. Differentiators on pages (S2) — recommended yes; confirm.
-2. Objectives: visible-blurb minimum, or full pages (schema change: slug on objectives)?
-3. Blurb vs summary: two voices by design, or consolidate?
-4. Which third-ring candidates actually enter candidates.json now?
-5. Attach the materials for §5.
+1. **Differentiators on pages (S2): YES** — "same recipe, different idea" block
+   on each collision-family's page: the recipe line, siblings' differentiators
+   with links, this family's own differentiator, link to the builder collision.
+2. **Objectives: BOTH, STAGED** — (a) now: render the selected objective's blurb
+   as visible text in the builder; map legend click also shows the blurb in the
+   detail area. (b) queued: full objective pages via candidates.json — requires
+   adding an `objective` tier to the candidates lint and, at page time, a slug
+   field on objectives.
+3. **Blurb vs summary: TWO VOICES BY DESIGN** — blurb = terse map/builder voice
+   (~10 words, glanceable); summary = standalone page//sources/ voice (~25
+   words). Register rule documented here; no lint, no consolidation.
+4. **Candidates queue: three batches enter candidates.json** —
+   (a) page-debt first: denoiser, generator-discriminator (+ U-Net, folded into
+   the denoiser story or standalone); (b) training-efficiency trio: LoRA,
+   quantization, distillation; (c) the 9 objectives (per decision 2b).
+   Agentic/tool-use: deferred, not queued.
+5. **"Attached materials" = the outward links** — resolved as §5.
+
+### Writing-voice rule (per decision 3)
+
+- `blurb` (explainer.json): what you'd say pointing at the node — fragment OK,
+  no terminal period needed, target ≤ ~12 words.
+- `summary` (frontmatter): a complete standalone sentence that works with no
+  map visible — it is the page's subtitle and its /sources/ description.
