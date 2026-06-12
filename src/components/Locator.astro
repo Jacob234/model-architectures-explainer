@@ -1,16 +1,15 @@
 ---
 import data from '../data/explainer.json';
+import { locatorEntries } from '../scripts/locator-entries.js';
 interface Props { slug: string; tier: 'primitive' | 'module' | 'modifier' | 'family'; }
 const { slug, tier } = Astro.props;
-const tierArr = ({ primitive: data.primitives, module: data.modules,
-                   modifier: data.modifiers, family: data.families } as Record<string, any[]>)[tier];
-const withPages = tierArr.filter((n: any) => n.slug);
-const i = withPages.findIndex((n: any) => n.slug === slug);
+const withPages = locatorEntries(tier, data);
+const i = withPages.findIndex((n) => n.slug === slug);
 const node = i >= 0 ? withPages[i] : null;
 const prev = i > 0 ? withPages[i - 1] : null;
 const next = i >= 0 && i < withPages.length - 1 ? withPages[i + 1] : null;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const mapHash = node ? `${base}/#${tier}-${node.id}` : `${base}/`;
+const mapHash = node ? `${base}/#${tier}-${node.mapId}` : `${base}/`;
 ---
 <nav class="locator">
   <a href={mapHash}>← back to map</a>
