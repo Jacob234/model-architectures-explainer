@@ -1,3 +1,309 @@
 {
-  "candidates": []
+  "candidates": [
+    {
+      "id": "denoiser",
+      "name": "denoiser",
+      "tier": "module",
+      "blurb": "The network diffusion and flow models train to undo corruption — a convolutional U-Net in the first wave, now usually a transformer (DiT).",
+      "note": "page-debt: already a map node and builder chip, but unclickable — write the page, set the module's slug, delete this entry",
+      "sources": [
+        {
+          "label": "Denoising Diffusion Probabilistic Models (Ho et al., 2020)",
+          "url": "https://arxiv.org/abs/2006.11239",
+          "type": "paper"
+        },
+        {
+          "label": "What are Diffusion Models? (Lilian Weng, 2021)",
+          "url": "https://lilianweng.github.io/posts/2021-07-11-diffusion-models/",
+          "type": "blog"
+        },
+        {
+          "label": "The Annotated Diffusion Model (Hugging Face, 2022)",
+          "url": "https://huggingface.co/blog/annotated-diffusion",
+          "type": "blog"
+        }
+      ]
+    },
+    {
+      "id": "generator-discriminator",
+      "name": "generator + discriminator",
+      "tier": "module",
+      "blurb": "The adversarial pair: a generator forging samples, a discriminator judging real from fake, each trained against the other.",
+      "note": "page-debt: map node + builder chip with no page; GAN Lab covers the training dynamics interactively — link, don't rebuild",
+      "sources": [
+        {
+          "label": "Generative Adversarial Networks (Goodfellow et al., 2014)",
+          "url": "https://arxiv.org/abs/1406.2661",
+          "type": "paper"
+        },
+        {
+          "label": "GAN Lab (Polo Club of Data Science)",
+          "url": "https://poloclub.github.io/ganlab/",
+          "type": "explainer"
+        },
+        {
+          "label": "From GAN to WGAN (Lilian Weng, 2017)",
+          "url": "https://lilianweng.github.io/posts/2017-08-20-gan/",
+          "type": "blog"
+        }
+      ]
+    },
+    {
+      "id": "u-net",
+      "name": "U-Net",
+      "tier": "module",
+      "blurb": "Encoder–decoder convolutions with skip connections at every scale — the denoiser of the first diffusion wave, still the default in segmentation.",
+      "note": "currently a slugless denoiser variant on the map — a page gives that variant its missing link target",
+      "sources": [
+        {
+          "label": "U-Net: Convolutional Networks for Biomedical Image Segmentation (Ronneberger et al., 2015)",
+          "url": "https://arxiv.org/abs/1505.04597",
+          "type": "paper"
+        },
+        {
+          "label": "An Overview of Semantic Image Segmentation (Jeremy Jordan, 2018)",
+          "url": "https://www.jeremyjordan.me/semantic-segmentation/",
+          "type": "blog"
+        }
+      ]
+    },
+    {
+      "id": "lora",
+      "name": "LoRA",
+      "tier": "modifier",
+      "blurb": "Freeze the weights, learn low-rank deltas on top — fine-tune a huge model by training under 1% of its parameters.",
+      "note": "training-efficiency trio; modifier-shaped like MoE/GQA (changes how primitives run, not which ones)",
+      "sources": [
+        {
+          "label": "LoRA: Low-Rank Adaptation of Large Language Models (Hu et al., 2021)",
+          "url": "https://arxiv.org/abs/2106.09685",
+          "type": "paper"
+        },
+        {
+          "label": "QLoRA: Efficient Finetuning of Quantized LLMs (Dettmers et al., 2023)",
+          "url": "https://arxiv.org/abs/2305.14314",
+          "type": "paper"
+        },
+        {
+          "label": "Parameter-Efficient Fine-Tuning using PEFT (Hugging Face, 2023)",
+          "url": "https://huggingface.co/blog/peft",
+          "type": "blog"
+        }
+      ]
+    },
+    {
+      "id": "quantization",
+      "name": "quantization",
+      "tier": "modifier",
+      "blurb": "Store weights in fewer bits (8, 4, even 2) — most of the quality at a fraction of the memory.",
+      "note": "training-efficiency trio; Grootendorst's visual guide is near-definitive — link, don't write deep",
+      "sources": [
+        {
+          "label": "LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale (Dettmers et al., 2022)",
+          "url": "https://arxiv.org/abs/2208.07339",
+          "type": "paper"
+        },
+        {
+          "label": "A Visual Guide to Quantization (Maarten Grootendorst, 2024)",
+          "url": "https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization",
+          "type": "blog"
+        }
+      ]
+    },
+    {
+      "id": "distillation",
+      "name": "distillation",
+      "tier": "modifier",
+      "blurb": "Train a small student to match a big teacher's output distribution, not just the labels — keeping most of the capability at a fraction of the size.",
+      "note": "training-efficiency trio; Hinton 2015 plus DistilBERT as the worked example",
+      "sources": [
+        {
+          "label": "Distilling the Knowledge in a Neural Network (Hinton et al., 2015)",
+          "url": "https://arxiv.org/abs/1503.02531",
+          "type": "paper"
+        },
+        {
+          "label": "DistilBERT, a Distilled Version of BERT (Sanh et al., 2019)",
+          "url": "https://arxiv.org/abs/1910.01108",
+          "type": "paper"
+        },
+        {
+          "label": "Large Transformer Model Inference Optimization (Lilian Weng, 2023)",
+          "url": "https://lilianweng.github.io/posts/2023-01-10-inference-optimization/",
+          "type": "blog"
+        }
+      ]
+    },
+    {
+      "id": "autoregressive-objective",
+      "name": "autoregressive",
+      "tier": "objective",
+      "blurb": "predict the next token/frame given everything so far",
+      "note": "objectives batch (inventory decision 2b): writing this page requires adding a slug field to objectives in explainer.json",
+      "sources": [
+        {
+          "label": "Language Models are Few-Shot Learners (Brown et al., 2020)",
+          "url": "https://arxiv.org/abs/2005.14165",
+          "type": "paper"
+        },
+        {
+          "label": "The Unreasonable Effectiveness of Recurrent Neural Networks (Andrej Karpathy, 2015)",
+          "url": "https://karpathy.github.io/2015/05/21/rnn-effectiveness/",
+          "type": "blog"
+        }
+      ]
+    },
+    {
+      "id": "masked-objective",
+      "name": "masked",
+      "tier": "objective",
+      "blurb": "hide pieces of the input and reconstruct them from context",
+      "note": "objectives batch (inventory decision 2b): writing this page requires adding a slug field to objectives in explainer.json",
+      "sources": [
+        {
+          "label": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (Devlin et al., 2018)",
+          "url": "https://arxiv.org/abs/1810.04805",
+          "type": "paper"
+        },
+        {
+          "label": "The Illustrated BERT, ELMo, and co. (Jay Alammar, 2018)",
+          "url": "https://jalammar.github.io/illustrated-bert/",
+          "type": "blog"
+        }
+      ]
+    },
+    {
+      "id": "contrastive-objective",
+      "name": "contrastive",
+      "tier": "objective",
+      "blurb": "pull matched pairs together in embedding space, push mismatches apart",
+      "note": "objectives batch (inventory decision 2b): writing this page requires adding a slug field to objectives in explainer.json",
+      "sources": [
+        {
+          "label": "A Simple Framework for Contrastive Learning of Visual Representations (Chen et al., 2020)",
+          "url": "https://arxiv.org/abs/2002.05709",
+          "type": "paper"
+        },
+        {
+          "label": "Contrastive Representation Learning (Lilian Weng, 2021)",
+          "url": "https://lilianweng.github.io/posts/2021-05-31-contrastive/",
+          "type": "blog"
+        }
+      ]
+    },
+    {
+      "id": "denoising-objective",
+      "name": "denoising",
+      "tier": "objective",
+      "blurb": "predict the noise that was added to the data, step by step",
+      "note": "objectives batch (inventory decision 2b): writing this page requires adding a slug field to objectives in explainer.json",
+      "sources": [
+        {
+          "label": "Denoising Diffusion Probabilistic Models (Ho et al., 2020)",
+          "url": "https://arxiv.org/abs/2006.11239",
+          "type": "paper"
+        },
+        {
+          "label": "Understanding Diffusion Models: A Unified Perspective (Calvin Luo, 2022)",
+          "url": "https://arxiv.org/abs/2208.11970",
+          "type": "paper"
+        }
+      ]
+    },
+    {
+      "id": "adversarial-objective",
+      "name": "adversarial",
+      "tier": "objective",
+      "blurb": "a generator tries to fool a discriminator in a minimax game",
+      "note": "objectives batch (inventory decision 2b): writing this page requires adding a slug field to objectives in explainer.json",
+      "sources": [
+        {
+          "label": "Generative Adversarial Networks (Goodfellow et al., 2014)",
+          "url": "https://arxiv.org/abs/1406.2661",
+          "type": "paper"
+        },
+        {
+          "label": "GAN Lab (Polo Club of Data Science)",
+          "url": "https://poloclub.github.io/ganlab/",
+          "type": "explainer"
+        }
+      ]
+    },
+    {
+      "id": "reconstruction-objective",
+      "name": "reconstruction",
+      "tier": "objective",
+      "blurb": "squeeze the input through a bottleneck and rebuild it",
+      "note": "objectives batch (inventory decision 2b): writing this page requires adding a slug field to objectives in explainer.json",
+      "sources": [
+        {
+          "label": "Tutorial on Variational Autoencoders (Carl Doersch, 2016)",
+          "url": "https://arxiv.org/abs/1606.05908",
+          "type": "paper"
+        },
+        {
+          "label": "From Autoencoder to Beta-VAE (Lilian Weng, 2018)",
+          "url": "https://lilianweng.github.io/posts/2018-08-12-vae/",
+          "type": "blog"
+        }
+      ]
+    },
+    {
+      "id": "joint-embedding-objective",
+      "name": "joint-embedding",
+      "tier": "objective",
+      "blurb": "predict the representation of hidden content, not its pixels or tokens",
+      "note": "objectives batch (inventory decision 2b): writing this page requires adding a slug field to objectives in explainer.json",
+      "sources": [
+        {
+          "label": "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture (Assran et al., 2023)",
+          "url": "https://arxiv.org/abs/2301.08243",
+          "type": "paper"
+        },
+        {
+          "label": "A Path Towards Autonomous Machine Intelligence (Yann LeCun, 2022)",
+          "url": "https://openreview.net/forum?id=BZ5a1r-kVsf",
+          "type": "paper"
+        }
+      ]
+    },
+    {
+      "id": "flow-matching-objective",
+      "name": "flow-matching (objective)",
+      "tier": "objective",
+      "blurb": "regress the velocity field that transports noise into data",
+      "note": "objectives batch (inventory decision 2b): id suffixed because the flow-matching family page owns the bare slug; page needs a slug field on objectives",
+      "sources": [
+        {
+          "label": "Flow Matching for Generative Modeling (Lipman et al., 2022)",
+          "url": "https://arxiv.org/abs/2210.02747",
+          "type": "paper"
+        },
+        {
+          "label": "An Introduction to Flow Matching (Fjelde, Mathieu & De Bortoli, 2024)",
+          "url": "https://mlg.eng.cam.ac.uk/blog/2024/01/20/flow-matching.html",
+          "type": "blog"
+        }
+      ]
+    },
+    {
+      "id": "energy-objective",
+      "name": "energy",
+      "tier": "objective",
+      "blurb": "assign low energy to real data, high to everything else",
+      "note": "objectives batch (inventory decision 2b): writing this page requires adding a slug field to objectives in explainer.json",
+      "sources": [
+        {
+          "label": "How to Train Your Energy-Based Models (Song & Kingma, 2021)",
+          "url": "https://arxiv.org/abs/2101.03288",
+          "type": "paper"
+        },
+        {
+          "label": "Generative Modeling by Estimating Gradients of the Data Distribution (Yang Song, 2021)",
+          "url": "https://yang-song.net/blog/2021/score/",
+          "type": "blog"
+        }
+      ]
+    }
+  ]
 }
