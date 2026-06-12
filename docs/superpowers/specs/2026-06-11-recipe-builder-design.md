@@ -1,7 +1,7 @@
 # Recipe Builder Island — Design
 
 **Date:** 2026-06-11
-**Status:** Approved (brainstorm complete)
+**Status:** Implemented (2026-06-11)
 **Context:** First interactive island beyond the ladder map. Survived the
 "interactive exists" filter on /sources/ — no external explainer covers this
 site's modules + objective recipe framing.
