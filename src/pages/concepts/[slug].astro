@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Locator from '../../components/Locator.astro';
 import explainer from '../../data/explainer.json';
+import { collisionGroup } from '../../scripts/recipe-match.js';
 
 export async function getStaticPaths() {
   const entries = await getCollection('concepts');
@@ -12,6 +13,21 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const family = explainer.families.find((f) => f.slug === entry.id);
+
+// Recipe line (modules + objective) and, for collision families, the
+// "same recipe, different idea" block. Group membership mirrors the
+// differentiator lint, so every member is guaranteed a one-liner.
+const moduleById = Object.fromEntries(explainer.modules.map((m) => [m.id, m]));
+const objective = family && family.objective !== 'varies'
+  ? explainer.objectives.find((o) => o.id === family.objective)
+  : null;
+const recipeModules = (family?.modules ?? []).map((id) => moduleById[id]);
+const siblings = family
+  ? collisionGroup(family, explainer.families).filter((f) => f.id !== family.id)
+  : [];
+const recipeSentence = family
+  ? [...recipeModules.map((m) => m.name), objective ? objective.name : 'varies'].join(' + ')
+  : '';
 ---
 <Base title={`${entry.data.title} — Model Architectures`} description={entry.data.summary}>
   <article class="concept">
@@ -20,11 +36,42 @@ const family = explainer.families.find((f) => f.slug === entry.id);
     <h1>{entry.data.title}</h1>
     <p class="summary">{entry.data.summary}</p>
     {family && (
+      <p class="recipe">
+        {recipeModules.length > 0
+          ? recipeModules.map((m, idx) => (
+              <>{idx > 0 && <span class="plus">+</span>}<span class="chip" title={m.blurb}>{m.name}</span></>
+            ))
+          : <span class="chip">primitives, wired directly</span>}
+        <span class="plus">+</span>
+        {objective
+          ? <span class="obj-chip" style={`--c:${objective.color}`} title={objective.blurb}>
+              <span class="obj-dot" style={`background:${objective.color}`}></span>{objective.name}
+            </span>
+          : <span class="obj-chip varies">objective: varies</span>}
+      </p>
+    )}
+    {family && (
       <p class="builder-link">
         <a href={`${base}/builder/?family=${family.id}`}>▸ open this recipe in the builder</a>
       </p>
     )}
+    {family?.variants && <div class="caveat">⚠ {family.variants}</div>}
     <Content />
+    {family && siblings.length > 0 && (
+      <aside class="collision" aria-labelledby="collision-heading">
+        <h2 id="collision-heading">same recipe, different idea</h2>
+        <p><b>{recipeSentence}</b> is also the recipe of:</p>
+        <ul>
+          {siblings.map((s) => (
+            <li><a href={`${base}/concepts/${s.slug}/`}>{s.name}</a> — {s.differentiator}</li>
+          ))}
+        </ul>
+        <p class="collision-self">this one: {family.differentiator}</p>
+        <p class="collision-builder">
+          <a href={`${base}/builder/?family=${family.id}`}>▸ see the collision in the builder</a>
+        </p>
+      </aside>
+    )}
     {entry.data.sources && entry.data.sources.length > 0 && (
       <section class="sources">
         <h2>Sources</h2>

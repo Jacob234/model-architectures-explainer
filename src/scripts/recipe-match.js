@@ -33,6 +33,17 @@ export function matchRecipe({ modules, objective }, families) {
   return { exact, alsoFits, oneStep, fallback };
 }
 
+// All families sharing this family's exact (module-set, objective) recipe,
+// including itself, in data order — or [] when its recipe is unique. Same
+// grouping rule as the differentiator lint: 'varies' never groups.
+export function collisionGroup(family, families) {
+  if (family.objective === 'varies') return [];
+  const fam = new Set(family.modules ?? []);
+  const members = families.filter((f) =>
+    f.objective === family.objective && setEq(new Set(f.modules ?? []), fam));
+  return members.length > 1 ? members : [];
+}
+
 // Describe the single edit separating a oneStep family from the selection.
 // Only valid for distance-1 families; for distance > 1 the fall-through
 // branch fires with a misleading result, not an error.

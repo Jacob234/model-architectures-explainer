@@ -102,3 +102,39 @@ test('oneStep includes concrete-objective family when user has no objective set'
   assert.deepEqual(editHint({ modules: [], objective: null }, FAMILIES.find((f) => f.id === 'energy')),
     { kind: 'swap-objective', what: 'energy' });
 });
+
+// --- collisionGroup ---
+import { collisionGroup } from '../src/scripts/recipe-match.js';
+
+test('collisionGroup: returns all members including self, in data order', () => {
+  const llm = FAMILIES.find((f) => f.id === 'llm');
+  assert.deepEqual(ids(collisionGroup(llm, FAMILIES)), ['llm', 'rag']);
+  const rag = FAMILIES.find((f) => f.id === 'rag');
+  assert.deepEqual(ids(collisionGroup(rag, FAMILIES)), ['llm', 'rag']);
+});
+
+test('collisionGroup: family with a unique recipe returns empty', () => {
+  const vae = FAMILIES.find((f) => f.id === 'vae');
+  assert.deepEqual(collisionGroup(vae, FAMILIES), []);
+});
+
+test('collisionGroup: varies families never group, even on shared modules', () => {
+  const vit = FAMILIES.find((f) => f.id === 'vit'); // same modules as bert
+  assert.deepEqual(collisionGroup(vit, FAMILIES), []);
+});
+
+test('collisionGroup: module order does not matter', () => {
+  const fams = [
+    { id: 'a', modules: ['x', 'y'], objective: 'masked' },
+    { id: 'b', modules: ['y', 'x'], objective: 'masked' },
+  ];
+  assert.deepEqual(ids(collisionGroup(fams[0], fams)), ['a', 'b']);
+});
+
+test('collisionGroup: same modules but different objective do not group', () => {
+  const fams = [
+    { id: 'a', modules: ['x'], objective: 'masked' },
+    { id: 'b', modules: ['x'], objective: 'contrastive' },
+  ];
+  assert.deepEqual(collisionGroup(fams[0], fams), []);
+});
